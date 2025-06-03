@@ -1245,6 +1245,10 @@ select[class="filterSelect"] {
 }
 
 
+.featuresBlockCol.__Slider .featuresBlockBodyHeadingDesc{
+    margin-bottom: 8px;
+}
+
 @media screen and (min-width: 1024px) {
     .featuresBlock .featuresBlockBodyHeadingTitle {
         margin-bottom: 0 !important;
