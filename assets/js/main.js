@@ -401,13 +401,15 @@ const appInit = () => {
                                 {
                                     name: 'Офис в Москве',
                                     slug: 'office_msk',
-                                    coords: [55.850838, 37.495509],
+                                    coords: [55.865632, 37.587102],
+                                    zoom: 17.7,
                                     // map_url: 'https://yandex.ru/map-widget/v1/?um=constructor%3A903404a79568df78d3c9baa7bdfab3f84c1c6bed5e98dc3ce5a2fb46065ecd64&source=constructor'
                                 },
                                 {
                                     name: 'Производственная площадка в Орле',
                                     slug: 'mnf_orel',
                                     coords: [52.990941, 36.110711],
+                                    zoom: 21,
                                     // map_url: 'https://yandex.ru/map-widget/v1/?um=constructor%3A903404a79568df78d3c9baa7bdfab3f84c1c6bed5e98dc3ce5a2fb46065ecd64&source=constructor'
                                 }
                             ],

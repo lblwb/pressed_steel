@@ -47,7 +47,7 @@
                         </button>
                     </div>
                     <p class="blockSubmitDesc">
-                        Нажимая “Разместить заявку” вы соглашаетесь с <a href="/privacy-policy" target="_blank">политикой
+                        Нажимая “Разместить заявку” Вы соглашаетесь с <a href="/privacy-policy" target="_blank">политикой
                             обработки персональных данных</a>
                     </p>
                 </div>

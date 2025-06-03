@@ -329,8 +329,8 @@ body {
 }
 
 .mainNavbarLinks nav a {
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 17px;
     line-height: 100%;
     letter-spacing: 0%;
     text-align: center;
@@ -367,6 +367,9 @@ body {
 }
 
 .mainNavbarAcc {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .mainNavbarAcc .mainNavbarAccCart {
@@ -834,6 +837,7 @@ select[class="filterSelect"] {
 
 .bgrHeroBlockBanner .bgrHeroBlockHeading {
     margin-bottom: 40px;
+    margin-bottom: 40px;
     margin-top: 120px;
 }
 
@@ -864,7 +868,8 @@ select[class="filterSelect"] {
 /**/
 
 .bgrHeroBlock {
-    min-height: 80vh;
+    /*min-height: 80vh;*/
+    min-height: 70vh;
 }
 
 .bgrHeroBlock .blockHeadingTitle {
@@ -895,7 +900,8 @@ select[class="filterSelect"] {
 }
 
 .bgrHeroBlock .bgrHeroBlockWrapper {
-    min-height: 80vh;
+    /*min-height: 80vh;*/
+    min-height: 70vh;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -904,7 +910,7 @@ select[class="filterSelect"] {
 /*style="margin-bottom: 40px; margin-top: 12vh"*/
 /*style="margin-bottom: 40px;margin-top: 12vh;"*/
 .bgrHeroBlockHeading {
-    margin-bottom: 40px;
+    margin-bottom: 80px;
     margin-top: 12vh;
 }
 
@@ -1957,6 +1963,14 @@ select[class="filterSelect"] {
     }
 }
 
+@media screen and (max-width: 1820px) {
+
+    .callToActionPreview {
+        max-width: 900px !important;
+    }
+}
+
+
 @media screen and (max-width: 1680px) {
     .callToActionPreviewImg {
         bottom: 0;
@@ -1980,7 +1994,7 @@ select[class="filterSelect"] {
 
     .callToActionContext {
         margin: 0 40px;
-        max-width: 480px !important;
+        /*max-width: 480px !important;*/
     }
 
     .callToActionPreview {
@@ -2134,6 +2148,8 @@ select[class="filterSelect"] {
     left: -220px;
 }
 
+
+
 @media screen and (max-width: 360px) {
     .callToAction .callToActionHeading .callToActionHeadingTitle {
         max-width: 351px;
@@ -2163,6 +2179,21 @@ select[class="filterSelect"] {
     }
 }
 
+@media screen and (min-width: 560px) and (max-width: 768px){
+    .callToAction .callToActionHeading .callToActionHeadingTitle{
+        max-width: unset!important;
+    }
+    .callToAction .callToActionHeading .callToActionHeadingDesc{
+        max-width: unset!important;
+    }
+}
+
+@media screen and (min-width: 967px) and (max-width: 1140px){
+    .callToAction .callToActionHeading .callToActionHeadingDesc{
+        max-width: 380px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .callToActionWrapper {
         display: flex;
@@ -2186,9 +2217,7 @@ select[class="filterSelect"] {
     .callToActionPreviewImg img {
         /*width: 100% !important;*/
     }
-}
 
-@media screen and (max-width: 768px) {
     .callToAction .callToActionHeading .callToActionHeadingTitle {
         max-width: 351px;
         font-family: "Montserrat", sans-serif;
@@ -2216,6 +2245,9 @@ select[class="filterSelect"] {
         width: 100%;
     }
 }
+
+
+
 
 .callToActionForm {
     max-width: 28.8vw;
@@ -2282,6 +2314,82 @@ select[class="filterSelect"] {
 
 
 /* Page Contact */
+
+.contactPgsInfo{
+    max-width: 927px;
+}
+
+.contactPgsInfo .featuresBlockBodyWrapper{
+    flex-flow: row wrap;
+}
+
+
+.contactPgsInfo .featuresBlockBodyWrapper{
+
+}
+
+
+#appContacts .featuresBlockHeadingWrap{
+    justify-content: flex-start;
+    gap: 40px;
+}
+
+#appContacts .featuresBlockBodyHeadingDesc{
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    /* identical to box height, or 27px */
+    letter-spacing: 0.02em;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+
+@media screen and (max-width: 1400px) {
+    .contactPgsInfo{
+        max-width: 820px;
+    }
+
+
+    .contactPgsInfo .featuresBlockBodyWrapper{
+        flex-flow: column!important;
+    }
+
+    .contactPgsInfo .featuresBlockBodyWrapper{
+        flex-grow: 0;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .contactPgsInfo{
+        max-width: 520px;
+    }
+    .contactPgsInfo .featuresBlockBodyWrapper{
+        flex-flow: column!important;
+    }
+
+    .contactPgsInfo .featuresBlockBodyWrapper{
+        flex-grow: 0;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .featuresBlockTab{
+        margin-top: 60px;
+    }
+    .contactPgsInfo .featuresBlockBodyWrapper{
+        gap: 18px 20px;
+    }
+
+    .contactPgsInfo .featuresBlockBodyHeading{
+        margin-bottom: 0!important;
+    }
+}
+
+
 
 .featuresBlockTab {
 }
