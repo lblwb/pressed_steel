@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "title": "pressed_steel",
+  "templateParts": [],
+  "settings": {
+    "woocommerce": {
+      "productCatalog": {
+        "imageLoading": "lazy",
+        "alignment": "center",
+        "imageSizing": "cropped"
+      }
+    },
+    "customTemplates": [],
+    "blockTemplates": true,
+    "blockTemplateParts": true
+  },
+  "styles": {
+    "blocks": {}
+  }
+}

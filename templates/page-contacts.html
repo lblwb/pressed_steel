@@ -1,0 +1,112 @@
+<!-- wp:template-part {"slug":"header-basic","tagName":"header"} /-->
+<!-- wp:pattern {"slug":"pressed_steel/hero-basic"} /-->
+
+<!--<div class="pageBody" style="min-height: 50vh">-->
+<!--Contact-->
+<!--</div>-->
+
+<div class="featuresBlock" id="appContacts">
+    <div class="featuresBlockWrapper gridWrap">
+        <div class="featuresBlockCol">
+            <div class="featuresBlockHeadingWrap">
+                <div class="featuresBlockHeading">
+                    <div class="featuresBlockHeadingTitle">
+                        <span class="headingTitle __HighActive">01</span>
+                        <!-- wp:heading {"textAlign":"right"} -->
+                        <span>Контакты</span>
+                        <!-- /wp:heading -->
+                    </div>
+                </div>
+                <div class="featuresBlockBodyInfo">
+                    <div class="featuresBlockBodyWrapper">
+                        <div class="featuresBlockBodyHeading" style="margin-bottom: 40px;">
+                            <div class="featuresBlockBodyHeadingDesc __Main __Table">
+                                Бесплатно по всей Росcии
+                            </div>
+
+                            <div class="featuresBlockBodyHeadingTitle __Main __Table">
+                                <!-- wp:heading {"textAlign":"right"} -->
+                                8 (800) 700-60-50
+                                <!-- /wp:heading -->
+                            </div>
+                        </div>
+                        <div class="featuresBlockBodyHeading __Main __Table" style="margin-bottom: 40px;">
+                            <div class="featuresBlockBodyHeadingDesc">
+                                Наша основная почта
+                            </div>
+
+                            <div class="featuresBlockBodyHeadingTitle __Main __Table">
+                                <!-- wp:heading {"textAlign":"right"} -->
+                                info@pressedsteel.ru
+                                <!-- /wp:heading -->
+                            </div>
+                        </div>
+                        <div class="featuresBlockBodyHeading" style="margin-bottom: 40px;">
+                            <div class="featuresBlockBodyHeadingDesc __Main __Table">
+                                График работы
+                            </div>
+
+                            <div class="featuresBlockBodyHeadingTitle __Main __Table">
+                                <!-- wp:heading {"textAlign":"right"} -->
+                                Пн-Сб с 8:00-18:00
+                                <!-- /wp:heading -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="featuresBlockBodyWrapper"
+                         style="display: flex; flex-flow: column; justify-content: space-between">
+                        <div class="featuresBlockBodyHeading __Mob __Table" style="margin-bottom: 40px;">
+                            <!--                            <div class="featuresBlockBodyHeadingDesc __Main __Table">-->
+                            <!--                                Адреса офисов-->
+                            <!--                            </div>-->
+
+                            <div class="featuresBlockBodyHeadingTitle __Main __Table" @click="selectedContactMapTab('office_msk')" style="cursor: pointer">
+                                <!-- wp:heading {"textAlign":"right"} -->
+                                Адрес офиса: 125493, г. Москва, ул. Смольная, д. 7, помещ. 1/1, комната 22 офис 120
+                                <!-- /wp:heading -->
+                            </div>
+                            <div class="featuresBlockBodyHeadingTitle __Main __Table" @click="selectedContactMapTab('mnf_orel')" style="cursor: pointer">
+                                <!-- wp:heading {"textAlign":"right"} -->
+                                Адрес производственной площадки: 302023 г.Орёл, Артельный пер, д.7а
+                                <!-- /wp:heading -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="featuresBlockBodyWrapper" style="">
+                        <div class="featuresBlockTab">
+                            <div class="featuesBlockTabWrapper" style="display: flex;">
+                                <div class="featuresBlockTabItem"
+                                     v-for="point in appContactState.map.points"
+                                     :key="point.slug"
+                                     @click="selectedContactMapTab(point.slug)"
+                                     :class="{ __Active: appContactState.map.tabs.selected.slug === point.slug }">
+                                    {{ point.name }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="featuresBlockBody" style="color: #000;">
+                <div class="featuresBlockBodyMap" v-if="currentMapUrl">
+                    <iframe
+                            :src="currentMapUrl"
+                            width="100%"
+                            height="400"
+                            frameborder="0"
+                            allowfullscreen
+                            style="border: 1px solid #ccc; border-radius: 6px"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!-- wp:pattern {"slug":"pressed_steel/call-to-action"} /-->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

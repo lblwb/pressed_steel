@@ -1,0 +1,46 @@
+<!-- wp:template-part {"slug":"header-abs","tagName":"header-abs"} /-->
+<!-- wp:pattern {"slug":"pressed_steel/hero-shop"} /-->
+<div class="gridWrap">
+    <div class="filterBar"
+         style="">
+        <div class="filterBarWrapper" style="">
+            <div class="filterBarMain">
+                <div class="filterBarMainWrap" style="display: flex; gap: 18px">
+                    <div class="filterBarInput">
+                        <!-- wp:html -->
+                        <select class="filterSelect">
+                            <option>Тип</option>
+                        </select>
+                        <!-- /wp:html -->
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="filterBarShopWrap" style="">
+                <div class="filterBarInput">
+                    <!-- wp:html -->
+                    <select class="filterSelect">
+                        <option>По умолчанию</option>
+                    </select>
+                    <!-- /wp:html -->
+                </div>
+                <div class="filterBarInput">
+                    <!-- wp:html -->
+                    <select class="filterSelect">
+                        <option>25 шт.</option>
+                    </select>
+                    <!-- /wp:html -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="productGrid" style="margin-bottom: 20px">
+        <!-- wp:shortcode -->
+        [custom_product_cat]
+        <!-- wp:shortcode /-->
+    </div>
+</div>
+<!-- wp:pattern {"slug":"pressed_steel/call-to-action"} /-->
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

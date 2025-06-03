@@ -1,0 +1,12 @@
+{
+  "apiVersion": 2,
+  "name": "custom/template-url",
+  "title": "Template URL",
+  "category": "widgets",
+  "icon": "admin-site",
+  "description": "Returns the URL of the theme directory",
+  "supports": {
+    "html": false
+  },
+  "render": "file:./render.php"
+}
