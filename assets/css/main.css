@@ -1963,8 +1963,8 @@ select[class="filterSelect"] {
 
 @media screen and (min-width: 1440px) and (max-width: 1920px) {
     .callToActionContext {
-        max-width: unset !important;
-        padding: 0 64px;
+        /*max-width: unset !important;*/
+        /*padding: 0 64px;*/
     }
 }
 

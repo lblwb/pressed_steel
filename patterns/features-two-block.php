@@ -74,7 +74,7 @@
         </article>
 
         <!-- Certificates Section -->
-        <article class="featuresBlockCol">
+        <article class="featuresBlockCol" id="certification">
             <header class="featuresBlockHeadingWrap">
                 <div class="featuresBlockHeading">
                     <h2 class="featuresBlockHeadingTitle">
@@ -98,7 +98,7 @@
                                  style="width: 100%; height: 100%;">
                         </div>
                         <div class="featuresBlockMoreBtn">
-                            <a class="blockActionBtn __Active" href="/certificates" class="button is-style-fill"
+                            <a class="blockActionBtn __Active" href="/about#certification" class="button is-style-fill"
                                aria-label="Посмотреть все сертификаты">
                                 <div class="blockActionBtnWrapper">
                                     <span class="blockActionBtnTitle">Смотреть все</span>

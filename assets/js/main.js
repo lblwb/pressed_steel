@@ -41,15 +41,25 @@ const initFeaturesSliders = () => {
 
                     const titleEls = document.querySelectorAll("main.featuresBlockBody .featuresBlockBodyHeadingTitle");
                     const descEls = document.querySelectorAll("main.featuresBlockBody .featuresBlockBodyHeadingDesc");
+                    const linkmoreEls = document.querySelectorAll("main.featuresBlockBody .featuresBlockMoreBtn a");
 
                     const newTitle = activeSlide.dataset.title;
                     const newDesc = activeSlide.dataset.desc;
+                    const newPrdUrl = activeSlide.dataset.productUrl;
+                    console.log('active-slide -> ',activeSlide.dataset);
 
                     if (titleEls && newTitle) {
                         titleEls.forEach((titleEl) => {
                             titleEl.textContent = newTitle;
                         });
                     }
+
+                    if(linkmoreEls && newPrdUrl){
+                        linkmoreEls.forEach((linkMoreEl) => {
+                            linkMoreEl.href = newPrdUrl;
+                        });
+                    }
+
                     if (descEls) {
                         // descEl.textContent = newDesc;
                         descEls.forEach((descEl) => {

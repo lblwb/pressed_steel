@@ -32,7 +32,7 @@
                 </header>
 
                 <div class="featuresBlockMoreBtn">
-                    <a href="/shop" class="blockActionBtn __Active button is-style-fill" style="color: white;"
+                    <a href="/" class="blockActionBtn __Active button is-style-fill" style="color: white;"
                        role="button" aria-label="Подробнее о продукции">
                         <div class="blockActionBtnWrapper">
                             <span class="blockActionBtnTitle">Подробнее</span>
@@ -83,6 +83,7 @@
                                     ?>
                                     <figure class="featuresBlockBodySliderItem swiper-slide"
                                             data-title="<?php echo esc_attr($term->name); ?>"
+                                            data-product-url="<?php echo esc_url($product_link); ?>"
                                             data-desc="<?php echo esc_attr(wp_strip_all_tags($term_description)); ?>">
                                         <a href="<?php echo esc_url($product_link); ?>">
                                             <img src="<?php echo esc_url($image_url); ?>"
