@@ -12,7 +12,7 @@
 
     <span aria-hidden="true"
           class="wp-block-cover__background has-contrast-background-color has-background-dim-100 has-background-dim"
-          style="background: rgba(4, 17, 47, 0.25);"></span>
+          style="background: rgba(4, 17, 47, 0.50);"></span>
 
     <img class="wp-block-cover__image-background" alt="" style="background: rgba(4, 17, 47, 0.25)"
          src="<?php echo esc_url(get_theme_file_uri('/assets/images/hero-bg.png')) ?>"

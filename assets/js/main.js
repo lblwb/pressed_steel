@@ -403,6 +403,7 @@ const appInit = () => {
                                     slug: 'office_msk',
                                     coords: [55.865632, 37.587102],
                                     zoom: 17.7,
+                                    map_url: "https://yandex.ru/map-widget/v1/?um=constructor%3A83925289b360f934cea261385ce16446f7266ca428344a447ef55cf6f17d1fd2&amp;source=constructor",
                                     // map_url: 'https://yandex.ru/map-widget/v1/?um=constructor%3A903404a79568df78d3c9baa7bdfab3f84c1c6bed5e98dc3ce5a2fb46065ecd64&source=constructor'
                                 },
                                 {
@@ -410,6 +411,7 @@ const appInit = () => {
                                     slug: 'mnf_orel',
                                     coords: [52.990941, 36.110711],
                                     zoom: 21,
+                                    map_url: "https://yandex.ru/map-widget/v1/?um=constructor%3A3964ce3db25819c097387d865f8ee142a893595de40c7aa46bb5009e981ecc97&amp;source=constructor",
                                     // map_url: 'https://yandex.ru/map-widget/v1/?um=constructor%3A903404a79568df78d3c9baa7bdfab3f84c1c6bed5e98dc3ce5a2fb46065ecd64&source=constructor'
                                 }
                             ],
@@ -439,7 +441,8 @@ const appInit = () => {
                         const zoom = point.zoom || 17;
 
                         // pt = "долгота,широта,pm2rdm"
-                        return `https://yandex.ru/map-widget/v1/?ll=${lon},${lat}&z=${zoom}&pt=${lon},${lat},pm2bls&mode=constructor&scroll=true`;
+                        // return `https://yandex.ru/map-widget/v1/?ll=${lon},${lat}&z=${zoom}&pt=${lon},${lat},pm2bls&mode=constructor&scroll=true`;
+                        return  point.map_url;
                     });
 
                     return {

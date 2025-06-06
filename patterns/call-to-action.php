@@ -131,7 +131,7 @@
                             <!-- Кнопки -->
                             <div class="modal-buttons">
 
-                                <button class="bgrHeroBlockActionBtn blockActionBtn __Active" type="submit" style="border: none">
+                                <button class="bgrHeroBlockActionBtn blockActionBtn __Active" type="submit" style="border: none;width: 100%;display: flex;justify-content: center;">
                                     <div class="blockActionBtnWrapper">
                                         <div class="blockActionBtnTitle">Отправить</div>
                                         <div class="blockActionBtnIcon">
@@ -152,7 +152,7 @@
                             </div>
 
                             <p class="modal-disclaimer">
-                                Нажимая “Отправить”, вы соглашаетесь с политикой обработки персональных данных и политикой сайта
+                                Нажимая “Отправить”, вы соглашаетесь с <a href="/privacy-policy/">политикой обработки персональных данных</a> и <a href="/privacy-policy/">политикой сайта</a>
                             </p>
                         </form>
 
@@ -221,7 +221,7 @@
 <!--                                    </div>-->
 <!--                                </div>-->
 
-                                <button class="bgrHeroBlockActionBtn blockActionBtn __Active" type="submit" style="border: none">
+                                <button class="bgrHeroBlockActionBtn blockActionBtn __Active" type="submit" style="border: none;width: 100%;display: flex;justify-content: center;">
                                     <div class="blockActionBtnWrapper">
                                         <div class="blockActionBtnTitle">Отправить</div>
                                         <div class="blockActionBtnIcon">
@@ -242,7 +242,7 @@
                             </div>
 
                             <p class="modal-disclaimer">
-                                Нажимая “Отправить”, вы соглашаетесь с политикой обработки персональных данных и политикой сайта
+                                Нажимая “Отправить”, вы соглашаетесь с <a href="/privacy-policy/">политикой обработки персональных данных</a> и <a href="/privacy-policy/">политикой сайта</a>
                             </p>
                         </form>
 
