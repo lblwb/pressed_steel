@@ -342,7 +342,8 @@ const appInit = () => {
                                 }
                             }
 
-                            fetch(window.myAjax.ajaxUrl + "?action=pressedsteel_send_form", {
+                            // fetch(window.myAjax.ajaxUrl + "?action=pressedsteel_send_form", {
+                            fetch("/wp-json/pst/v1/handle-form", {
                                 method: 'POST',
                                 body: formData,
                             })

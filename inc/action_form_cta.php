@@ -1,23 +1,21 @@
 <?php
 
-add_action( 'phpmailer_init', 'setup_smtp_mailer' );
-function setup_smtp_mailer( $phpmailer ) {
+add_action('phpmailer_init', 'setup_smtp_mailer');
+function setup_smtp_mailer($phpmailer)
+{
     $phpmailer->isSMTP();
-    $phpmailer->Host       = 'mail.nic.ru'; // SMTP-сервер (например smtp.yandex.ru, smtp.gmail.com и т.п.)
-    $phpmailer->SMTPAuth   = true;
-    $phpmailer->Port       = 465;           // 465 для SSL или 587 для TLS
-    $phpmailer->Username   = 'site@pressedsteel.ru'; // твой email
-    $phpmailer->Password   = '0hUtXezcWYZzU0l';      // Пароль от SMTP
+    $phpmailer->Host = 'mail.nic.ru'; // SMTP-сервер (например smtp.yandex.ru, smtp.gmail.com и т.п.)
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->Port = 465;           // 465 для SSL или 587 для TLS
+    $phpmailer->Username = 'site@pressedsteel.ru'; // твой email
+    $phpmailer->Password = '0hUtXezcWYZzU0l';      // Пароль от SMTP
     $phpmailer->SMTPSecure = 'ssl';         // либо 'tls' для порта 587
-    $phpmailer->From       = 'site@pressedsteel.ru';
-    $phpmailer->FromName   = 'Pressed Steel [SITE]';       // Имя отправителя
+    $phpmailer->From = 'site@pressedsteel.ru';
+    $phpmailer->FromName = 'Pressed Steel [SITE]';       // Имя отправителя
 }
 
-// Register AJAX hooks for both logged-in and non-logged-in users
-add_action('wp_ajax_pressedsteel_send_form', 'pressedsteel_handle_form');
-add_action('wp_ajax_nopriv_pressedsteel_send_form', 'pressedsteel_handle_form');
-
-function pressedsteel_handle_form() {
+function pressedsteel_send_form()
+{
     // Verify nonce
 //    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'pressedsteel_form_nonce')) {
 //        wp_send_json_error('Неверный запрос');
@@ -38,6 +36,8 @@ function pressedsteel_handle_form() {
     $phone = sanitize_text_field($_POST['phone'] ?? '');
     $email = sanitize_email($_POST['email'] ?? '');
     $comment = sanitize_textarea_field($_POST['comment'] ?? '');
+
+//    var_dump($_POST);
 
     // Validate required fields
     if (empty($fullname) || empty($phone) || empty($email)) {
@@ -87,6 +87,7 @@ function pressedsteel_handle_form() {
 
     // Send email
     $to = 'site@pressedsteel.ru';
+//    $to = 'cq3vanoj1d@ibolinva.com';
     $sent = wp_mail($to, $subject, $body, $headers, $attachments);
 
     if ($sent) {
@@ -98,4 +99,14 @@ function pressedsteel_handle_form() {
 
     wp_die();
 }
-?>
+
+//add_action('wp_ajax_pressedsteel_handle_form', 'pressedsteel_handle_form');
+//add_action('wp_ajax_nopriv_pressedsteel_send_form', 'pressedsteel_send_form');
+
+add_action('rest_api_init', function () {
+    register_rest_route('pst/v1', '/handle-form', [
+        'methods' => WP_REST_Server::CREATABLE, // Эквивалент 'POST'
+        'callback' => 'pressedsteel_send_form',
+        'permission_callback' => '__return_true', // Доступ для всех
+    ]);
+});
