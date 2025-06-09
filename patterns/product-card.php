@@ -59,7 +59,7 @@ if (have_rows('application_areas')) {
                 <div class="productInfoHeadingCart">
 
                     <div class="cartAddBox">
-                        <div class="cartAddBoxWrapper">
+                        <div class="cartAddBoxWrapper" style="display: flex">
                             <div class="cartAddBoxBtn">
                                 <a href="<?= esc_url($product->add_to_cart_url()); ?>"
                                    data-product_id="<?= esc_attr($product_id); ?>"
@@ -81,7 +81,8 @@ if (have_rows('application_areas')) {
                                 </a>
                             </div>
                             <div class="cartAddBoxPrice">
-                                <?php echo $product->get_price_html() ?>
+<!--                                --><?php //echo $product->get_price_html() ?>
+                                По запросу
                             </div>
                             <div class="cartAddBoxQty">
                                 <div class="cartAddBoxQtyWrapper">
