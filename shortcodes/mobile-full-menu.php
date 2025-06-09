@@ -1,8 +1,16 @@
-<?php
-
-wp_nav_menu(array(
-    'menu' => 'Main', // Do not fall back to first non-empty menu.
-    'theme_location' => 'base',
-//    'fallback_cb' => false // Do not fall back to wp_page_menu()
-));
-
+<div class="mainNavbarMobFullHeading">
+    <div class="mainNavbarMobFullHeadingTitle" style="color: #555555">
+        Навигация
+    </div>
+</div>
+<div class="mainNavbarMobFullList">
+    <?php do_shortcode('[mobile_full_menu_navi]'); ?>
+</div>
+<div class="mainNavbarMobFullHeading">
+    <div class="mainNavbarMobFullHeadingTitle" style="color: #555555">
+        Продукция
+    </div>
+</div>
+<div class="mainNavbarMobFullList">
+    <?php do_shortcode('[mobile_full_menu_prd]'); ?>
+</div>

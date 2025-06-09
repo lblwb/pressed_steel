@@ -196,5 +196,6 @@ function app_cart_init()
 app_cart_init();
 //add_action('init', 'app_cart_init');
 
+require_once(__DIR__ . "/inc/mobile_full_menu.php");
 require_once(__DIR__ . "/inc/product_params.php");
 require_once(__DIR__ . "/inc/action_form_cta.php");
