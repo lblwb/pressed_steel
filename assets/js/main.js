@@ -126,7 +126,8 @@ const appInit = () => {
         try {
             const cartApp = document.querySelector("#cart-app")
             if (cartApp) {
-                createApp({
+                window.states = {};
+                window.states.appCart = createApp({
                     data() {
                         return {
                             cartItems: [], // товары из корзины
@@ -188,56 +189,158 @@ const appInit = () => {
     }
     const appProductCard = () => {
         try {
-            const productCardDetail = document.querySelector("#productCardDetail")
-            if (productCardDetail) {
-                createApp({
-                    data() {
-                        return {
-                            rawParams: window.productParameters || [],
-                            productDetail: {
-                                select: {
-                                    tab: {
-                                        // name: 'about'
-                                        name: 'spec'
-                                    }
+            const productCardDetail = document.querySelector('#productCardDetail');
+            if (!productCardDetail) {
+                console.debug('Product card detail element not found');
+                return;
+            }
+
+            createApp({
+                setup() {
+                    // Reactive state
+                    const state = Vue.reactive({
+                        rawParams: window.productParameters || [],
+                        productDetail: {
+                            select: {
+                                tab: {
+                                    name: 'spec'
                                 }
-                            },
-                            selected: {},
-                            parameters: [],
-                        };
-                    }, computed: {}, methods: {
-                        // Функция переключения выбора
-                        toggleSelect(paramIndex, valueIndex) {
-                            const param = this.rawParams[paramIndex];
-                            const value = param.values[valueIndex];
-
-                            if (!value.active) return;
-
-                            param.values.forEach(v => v.selected = false);
-                            value.selected = true;
+                            }
                         },
-                        setSelectTab(name) {
-                            this.productDetail.select.tab.name = name;
-                        }
-                    }, mounted() {
-                        // При монтировании проходим по параметрам и ставим selected у первого доступного
-                        this.rawParams.forEach(paramSectItem => {
-                            // Сначала сбросим все selected у значений
-                            paramSectItem.values.forEach(value => value.selected = false);
+                        selected: {},
+                        parameters: []
+                    });
 
-                            // Найдём первый active и выделим его
-                            const firstActiveIndex = paramSectItem.values.findIndex(value => value.active);
-                            if (firstActiveIndex !== -1) {
-                                paramSectItem.values[firstActiveIndex].selected = true;
+                    // Validate rawParams structure
+                    const validatedParams = Vue.computed(() => {
+                        if (!Array.isArray(state.rawParams)) return [];
+                        return state.rawParams.map(param => ({
+                            ...param,
+                            values: Array.isArray(param.values) ? param.values : []
+                        }));
+                    });
+
+                    // Toggle selection method
+                    const toggleSelect = (paramIndex, valueIndex) => {
+                        // console.log(paramIndex, valueIndex)
+                        const param = validatedParams.value[paramIndex];
+                        if (!param || !param.values || !param.values[valueIndex]) {
+                            console.warn(`error ${paramIndex}:${valueIndex}`);
+                            return;
+                        }
+
+                        const value = param.values[valueIndex];
+                        if (!value.active) return;
+
+                        // Reset all selections
+                        param.values.forEach(v => (v.selected = false));
+                        // Set selected value
+                        value.selected = true;
+                        console.log(param.values);
+                    };
+
+                    // Set select tab
+                    const setSelectTab = (name) => {
+                        if (typeof name === 'string') {
+                            state.productDetail.select.tab.name = name;
+                        } else {
+                            console.warn('Invalid tab name:', name);
+                        }
+                    };
+
+                    // Add to cart method using Fetch
+                    const addToCart = async (event) => {
+                        event.preventDefault(); // Prevent default link behavior
+                        const link = event.currentTarget;
+                        const productId = link.dataset.product_id;
+                        const quantity = link.dataset.quantity || 1;
+
+                        // Collect selected parameters
+                        const attributes = {};
+                        validatedParams.value.forEach((param, index) => {
+                            const selectedValue = param.values.find(value => value.selected && value.active);
+                            if (selectedValue && param.attribute_name) {
+                                attributes[`attribute_${param.attribute_name}`] = selectedValue.item;
                             }
                         });
-                    }
-                }).mount(productCardDetail);
-            }
-        } catch (e) {
-            console.debug("cart-app not");
-        }
 
+                        // Validate product ID
+                        if (!productId) {
+                            console.error('Product ID is missing');
+                            alert('Error: Product ID is missing');
+                            return;
+                        }
+
+                        // Prepare form data for WooCommerce AJAX
+                        const formData = new URLSearchParams();
+                        formData.append('action', 'woocommerce_add_to_cart');
+                        formData.append('product_id', productId);
+                        formData.append('quantity', quantity);
+                        Object.entries(attributes).forEach(([key, value]) => {
+                            formData.append(key, value);
+                        });
+
+                        try {
+                            const response = await fetch(wc_add_to_cart_params.ajax_url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                },
+                                body: formData
+                            });
+
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+
+                            const data = await response.json();
+
+                            if (data.error && data.product_url) {
+                                console.error('Add to cart failed:', data);
+                                alert('Failed to add product to cart');
+                            } else {
+                                console.log('Product added to cart:', data);
+                                alert('Product successfully added to cart!');
+                                // Trigger WooCommerce's added_to_cart event
+                                const event = new CustomEvent('added_to_cart', {
+                                    detail: { fragments: data.fragments, cart_hash: data.cart_hash }
+                                });
+                                document.body.dispatchEvent(event);
+                            }
+                        } catch (error) {
+                            console.error('Fetch error:', error);
+                            alert('An error occurred while adding to cart');
+                        }
+                    };
+
+                    // Initialize selections on mount
+                    Vue.onMounted(() => {
+                        validatedParams.value.forEach(param => {
+                            // Reset all selections
+                            param.values.forEach(value => (value.selected = false));
+
+                            // Select first active value
+                            const firstActiveIndex = param.values.findIndex(value => value.active);
+                            if (firstActiveIndex !== -1) {
+                                param.values[firstActiveIndex].selected = true;
+                            }
+                        });
+                    });
+
+                    return {
+                        rawParams: state.rawParams,
+                        productDetail: state.productDetail,
+                        selected: state.selected,
+                        parameters: state.parameters,
+                        toggleSelect,
+                        setSelectTab,
+                        addToCart
+                    };
+                }
+            }).mount(productCardDetail);
+        } catch (error) {
+            console.error('Failed to initialize product card app:', error);
+        }
     }
     const appMobNavbar = () => {
         try {

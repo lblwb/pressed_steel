@@ -153,13 +153,13 @@
                                 </div>
                             </div>
 
-                            <div class="sliderPaginatePrevInfo">
-                                <span style="font-family: 'Montserrat',sans-serif;font-style: normal;font-weight: 300;font-size: 18px;line-height: 150%;letter-spacing: 0.02em;color: #232323;">Далее:</span><br>
-                                <span class="__NextSlideText"
-                                      style="font-family: 'Montserrat',sans-serif;font-style: normal;font-weight: 500;font-size: 18px;line-height: 150%;letter-spacing: 0.02em;color: #232323;">
-                                        Пресованный решетчатый настил
-                                    </span>
-                            </div>
+<!--                            <div class="sliderPaginatePrevInfo">-->
+<!--                                <span style="font-family: 'Montserrat',sans-serif;font-style: normal;font-weight: 300;font-size: 18px;line-height: 150%;letter-spacing: 0.02em;color: #232323;">Далее:</span><br>-->
+<!--                                <span class="__NextSlideText"-->
+<!--                                      style="font-family: 'Montserrat',sans-serif;font-style: normal;font-weight: 500;font-size: 18px;line-height: 150%;letter-spacing: 0.02em;color: #232323;">-->
+<!--                                        Пресованный решетчатый настил-->
+<!--                                    </span>-->
+<!--                            </div>-->
 
                             <div class="sliderActionNavigationMob">
                                 <div class="sliderActionNavigationWrap">

@@ -42,7 +42,7 @@ if (have_rows('application_areas')) {
 
     <!-- Верхняя часть -->
     <header class="productCardTop" style="display: flex; justify-content: flex-end;">
-        <figure class="productImage" style="max-width: 40vw;padding: 10px;width: 100%;max-height: 47vh;"
+        <figure class="productImage" style=""
                 itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
             <img src="<?= esc_url($image_url); ?>" alt="<?= esc_attr($image_alt); ?>"
                  style="width: 100%;height: 100%;object-fit: contain;object-position: center;">
@@ -61,22 +61,17 @@ if (have_rows('application_areas')) {
                     <div class="cartAddBox">
                         <div class="cartAddBoxWrapper" style="display: flex">
                             <div class="cartAddBoxBtn">
-                                <a href="<?= esc_url($product->add_to_cart_url()); ?>"
-                                   data-product_id="<?= esc_attr($product_id); ?>"
-                                   data-quantity="1"
-                                   class="blockActionBtn blockActionBtn __Active add_to_cart_button ajax_add_to_cart"
-                                   rel="nofollow"
-                                   style="display: inline-flex;"
-                                   aria-label="Добавить <?= esc_attr($product->get_name()); ?> в корзину">
+                                <a
+                                        href="#"
+                                        class="blockActionBtn blockActionBtn __Active add_to_cart_button"
+                                        @click="addToCart"
+                                        data-product_id="<?php echo $product_id ?>"
+                                        rel="nofollow"
+                                        style="display: inline-flex;"
+                                        :aria-label="'Добавить ' + productName + ' в корзину?'"
+                                >
                                     <div class="blockActionBtnWrapper" style="color: #fff;">
                                         <span class="blockActionBtnTitle">Добавить в корзину</span>
-                                        <!--                                <span class="blockActionBtnIcon">-->
-                                        <!-- Иконка SVG -->
-                                        <!--                                    <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-                                        <!--                                        <rect x="0.5" y="1" width="24" height="24" rx="12" stroke="white" stroke-opacity="0.4"/>-->
-                                        <!--                                        <path d="M10.5 9L14.5 13L10.5 17" stroke="currentColor" stroke-width="1.5"/>-->
-                                        <!--                                    </svg>-->
-                                        <!--                                </span>-->
                                     </div>
                                 </a>
                             </div>
@@ -136,8 +131,8 @@ if (have_rows('application_areas')) {
 
 
     <div class="productCardMiddle">
-        <div class="productParams" v-if="rawParams">
-            <div class="productParamsItem" v-for="paramSectItem in rawParams">
+        <div class="productParams" v-if="rawParams" style="display: flex;justify-content: space-between;">
+            <div class="productParamsItem" v-for="(paramSectItem, pIndex) in rawParams">
                 <div class="productParamsItemHeading">
                     <div class="productParamsItemHeadingTitle">
                         {{paramSectItem.name}}

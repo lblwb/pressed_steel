@@ -317,7 +317,7 @@ body {
 }
 
 .mainNavbarContact a {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -740,9 +740,10 @@ select[class="filterSelect"] {
 
 .blockActionBtn {
     /*padding: 2.2vh 4.8vw;*/
-    padding: 28px 90px;
+    padding: 28px 80px;
     cursor: pointer;
     color: #fff;
+    display: block;
 }
 
 .blockActionBtn .blockActionBtnWrapper {
@@ -987,7 +988,8 @@ select[class="filterSelect"] {
 /**/
 
 .featuresBlockWrapper {
-    padding: 10vh 0;
+    /*padding: 10vh 0;*/
+    padding: 10vh 0 0 0;
 }
 
 .featuresBlockHeadingWrap {
@@ -1247,7 +1249,7 @@ select[class="filterSelect"] {
 }
 
 
-.featuresBlockCol.__Slider .featuresBlockBodyHeadingDesc{
+.featuresBlockCol.__Slider .featuresBlockBodyHeadingDesc {
     margin-bottom: 8px;
 }
 
@@ -1929,7 +1931,7 @@ select[class="filterSelect"] {
 }
 
 .callToAction .callToActionHeading .callToActionHeadingTitle {
-    max-width: 707px;
+    max-width: 600px;
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 500;
@@ -1962,12 +1964,24 @@ select[class="filterSelect"] {
     color: #FFFFFF;
 }
 
+.callToActionContext::before, .callToActionContext::after {
+    display: none;
+}
+
 @media screen and (min-width: 1440px) and (max-width: 1920px) {
     .callToActionContext {
         /*max-width: unset !important;*/
         /*padding: 0 64px;*/
     }
 }
+
+
+@media screen and (max-width: 1540px) and (max-width: 1720px) {
+    .callToActionPreview {
+        max-width: 780px !important;
+    }
+}
+
 
 @media screen and (max-width: 1820px) {
 
@@ -1981,10 +1995,6 @@ select[class="filterSelect"] {
     .callToActionPreviewImg {
         bottom: 0;
         top: 0;
-    }
-
-    .callToActionContext::before, .callToActionContext::after {
-        display: none;
     }
 
     .callToActionPreview {
@@ -2155,7 +2165,6 @@ select[class="filterSelect"] {
 }
 
 
-
 @media screen and (max-width: 360px) {
     .callToAction .callToActionHeading .callToActionHeadingTitle {
         max-width: 351px;
@@ -2185,17 +2194,18 @@ select[class="filterSelect"] {
     }
 }
 
-@media screen and (min-width: 560px) and (max-width: 768px){
-    .callToAction .callToActionHeading .callToActionHeadingTitle{
-        max-width: unset!important;
+@media screen and (min-width: 560px) and (max-width: 768px) {
+    .callToAction .callToActionHeading .callToActionHeadingTitle {
+        max-width: unset !important;
     }
-    .callToAction .callToActionHeading .callToActionHeadingDesc{
-        max-width: unset!important;
+
+    .callToAction .callToActionHeading .callToActionHeadingDesc {
+        max-width: unset !important;
     }
 }
 
-@media screen and (min-width: 967px) and (max-width: 1140px){
-    .callToAction .callToActionHeading .callToActionHeadingDesc{
+@media screen and (min-width: 967px) and (max-width: 1140px) {
+    .callToAction .callToActionHeading .callToActionHeadingDesc {
         max-width: 380px;
     }
 }
@@ -2253,8 +2263,6 @@ select[class="filterSelect"] {
 }
 
 
-
-
 .callToActionForm {
     max-width: 28.8vw;
 }
@@ -2283,7 +2291,21 @@ select[class="filterSelect"] {
         font-family: "Montserrat", sans-serif;
         font-style: normal;
         font-weight: 300;
-        font-size: 10px;
+        font-size: 12px;
+        line-height: 150%;
+        /* identical to box height, or 15px */
+        letter-spacing: 0.02em;
+        color: #ffffff;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .blockSubmitDesc {
+        max-width: 483px;
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
         line-height: 150%;
         /* identical to box height, or 15px */
         letter-spacing: 0.02em;
@@ -2321,27 +2343,27 @@ select[class="filterSelect"] {
 
 /* Page Contact */
 
-.contactPgsInfo{
+.contactPgsInfo {
     max-width: 927px;
 }
 
-.contactPgsInfo .featuresBlockBodyWrapper{
+.contactPgsInfo .featuresBlockBodyWrapper {
     flex-flow: row wrap;
 }
 
 
-.contactPgsInfo .featuresBlockBodyWrapper{
+.contactPgsInfo .featuresBlockBodyWrapper {
 
 }
 
 
-#appContacts .featuresBlockHeadingWrap{
+#appContacts .featuresBlockHeadingWrap {
     justify-content: flex-start;
     gap: 40px;
 }
 
-#appContacts .featuresBlockBodyHeadingDesc{
-    font-family: 'Roboto',sans-serif;
+#appContacts .featuresBlockBodyHeadingDesc {
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 18px;
@@ -2354,47 +2376,48 @@ select[class="filterSelect"] {
 
 
 @media screen and (max-width: 1400px) {
-    .contactPgsInfo{
+    .contactPgsInfo {
         max-width: 820px;
     }
 
 
-    .contactPgsInfo .featuresBlockBodyWrapper{
-        flex-flow: column!important;
+    .contactPgsInfo .featuresBlockBodyWrapper {
+        flex-flow: column !important;
     }
 
-    .contactPgsInfo .featuresBlockBodyWrapper{
+    .contactPgsInfo .featuresBlockBodyWrapper {
         flex-grow: 0;
     }
 }
 
 @media screen and (max-width: 1200px) {
-    .contactPgsInfo{
+    .contactPgsInfo {
         max-width: 520px;
     }
-    .contactPgsInfo .featuresBlockBodyWrapper{
-        flex-flow: column!important;
+
+    .contactPgsInfo .featuresBlockBodyWrapper {
+        flex-flow: column !important;
     }
 
-    .contactPgsInfo .featuresBlockBodyWrapper{
+    .contactPgsInfo .featuresBlockBodyWrapper {
         flex-grow: 0;
     }
 }
 
 
 @media screen and (max-width: 768px) {
-    .featuresBlockTab{
+    .featuresBlockTab {
         margin-top: 60px;
     }
-    .contactPgsInfo .featuresBlockBodyWrapper{
+
+    .contactPgsInfo .featuresBlockBodyWrapper {
         gap: 18px 20px;
     }
 
-    .contactPgsInfo .featuresBlockBodyHeading{
-        margin-bottom: 0!important;
+    .contactPgsInfo .featuresBlockBodyHeading {
+        margin-bottom: 0 !important;
     }
 }
-
 
 
 .featuresBlockTab {
@@ -2425,17 +2448,19 @@ select[class="filterSelect"] {
 
 @media screen and (max-width: 1240px) {
     .featuresBlockTab .featuresBlockTabItem {
-        font-family: 'Montserrat',sans-serif;
+        font-family: 'Montserrat', sans-serif;
         font-weight: 400;
         font-size: 26px;
         line-height: 130%;
         letter-spacing: -1%;
     }
 }
+
 @media screen and (max-width: 768px) {
-    .featuresBlockTab{
+    .featuresBlockTab {
         /*display: none;*/
     }
+
     .featuresBlockTab .featuresBlockTabItem {
         font-size: 16px;
     }
@@ -2583,7 +2608,13 @@ select[class="filterSelect"] {
 }
 
 .productCardTop .productInfo .productInfoHeadingDesc {
-    margin-bottom: 148px;
+    margin-bottom: 45px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0%;
+
 }
 
 .productCard .productCardView .actionsBtnCart {
@@ -2596,6 +2627,17 @@ select[class="filterSelect"] {
 
 .productCard .productCardView .actionsBtnCart a {
     display: flex;
+}
+
+.productCardTop .productImage {
+    padding: 10px;
+    width: 100%;
+    max-width: 710px;
+    max-height: 329px;
+}
+
+.productCardTop .productInfo {
+    max-width: 690px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -2730,7 +2772,7 @@ select[class="filterSelect"] {
 
 .productParamsListItem {
     font-size: 14px;
-    padding: 9px 14px;
+    padding: 10px 20px;
     background: #f2f5fc;
     color: #333;
     cursor: pointer;
@@ -2807,17 +2849,18 @@ select[class="filterSelect"] {
 }
 
 .productCardTabs .productCardTabsItem {
-    color: #232323;
+    color: #ACB6C3;
     padding: 0px 15px 8px 15px;
     background: transparent;
     cursor: pointer;
     border: none;
     border-bottom: solid 1px #c0cad7;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 26px;
     line-height: 130%;
     letter-spacing: -1%;
+
 }
 
 .tabsViewWrapper p {
@@ -2945,14 +2988,28 @@ select[class="filterSelect"] {
 .cartBody {
 }
 
+.cartBody p, br {
+    display: none;
+}
+
 .cartBodyWrapper {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .cartBodyWrapper {
+        gap: 0;
+    }
 }
 
 .cartContent {
     width: 100%;
     flex: 1;
+    gap: 20px;
+    display: flex;
+    flex-flow: column;
 }
 
 .cartSidebar {
@@ -3063,6 +3120,8 @@ select[class="filterSelect"] {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 0 20px;
+    justify-content: space-between;
 }
 
 .cardInfoTitle {
@@ -3082,7 +3141,73 @@ select[class="filterSelect"] {
     text-align: center;
 }
 
+.cartOrderBlockItem{
+    background: #E9ECF5; gap: 40px
+}
+
+.cartOrderBlockItemSelected{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 20px;
+}
+
+.cartOrderBlockItemImg{
+    flex: 0
+}
+.cartOrderBlockInfo{
+    flex: 1
+}
+
+.cartOrderBlockInfoMobPrice{
+    display: flex;
+    flex-flow: column;
+    gap: 4px;
+}
+
+.cartOrderBlockInfoMobPrice .infoMobQtyHeading,
+.cartOrderBlockInfoMobQty .infoMobQtyHeading{
+    margin-bottom: 60px;
+
+}
+
+.cartOrderBlockDelMb{
+    display: none;
+}
+
+.cartOrderBlockInfoMobWrapper{
+    display: flex;justify-content: space-between;align-items: center;gap: 80px;
+}
+
 @media screen and (max-width: 960px) {
+    .cartOrderBlockDelMb{
+        display: block;
+    }
+    .cartOrderBlockDelMb .cartOrderBlockDel{
+        display: block;
+    }
+
+    .cartOrderBlockInfoMobWrapper{
+        display: flex;justify-content: space-between;align-items: flex-end;gap: 18px;
+    }
+
+
+    .cartContent{
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+
+
+    .cartOrderBlockInfoMobPrice{
+
+    }
+
+    .cartOrderBlockInfoMobPrice .infoMobQtyHeading,
+    .cartOrderBlockInfoMobQty .infoMobQtyHeading{
+        margin-bottom: 4px!important;
+    }
+
     .cartOrderBlockItemSelected {
         display: none;
     }
@@ -3092,7 +3217,8 @@ select[class="filterSelect"] {
         align-items: center;
         flex-flow: row wrap;
         padding: 10px 4px;
-        margin-bottom: 8px;
+        gap: 4px;
+        justify-content: flex-start;
     }
 
     .cartBodyHeading {
@@ -3100,12 +3226,16 @@ select[class="filterSelect"] {
         margin-bottom: 24px;
     }
 
+
+
     .cartOrderBlockItemImg {
-        max-width: calc((100% / 2) - 10px);
+        max-width: calc((100% / 2) - 16px);
+        flex: 1
     }
 
     .cartOrderBlockInfo {
-        max-width: calc((100% / 2) - 10px);
+        max-width: calc((100% / 2) - 16px);
+        flex: 1
     }
 
     .cardInfoTitle {
@@ -3628,6 +3758,7 @@ a {
 
 .productInfoHeadingCart .cartAddBox .cartAddBoxBtn a {
     text-wrap-mode: nowrap;
+    padding: 18px 60px;
 }
 
 .productInfoHeadingCart .cartAddBox .cartAddBoxWrapper {
@@ -3651,6 +3782,11 @@ a {
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
+    min-width: 140px;
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .productInfoHeadingCart .cartAddBox .cartAddBoxQty {
@@ -3695,12 +3831,14 @@ a {
     .productInfoHeadingCart .cartAddBox .cartAddBoxWrapper {
         flex-flow: row wrap;
     }
-    .productInfoHeadingCart .cartAddBox .cartAddBoxBtn{
+
+    .productInfoHeadingCart .cartAddBox .cartAddBoxBtn {
         width: 100%;
     }
+
     .productInfoHeadingCart .cartAddBox .cartAddBoxQty,
-    .productInfoHeadingCart .cartAddBox .cartAddBoxPrice{
-        flex:1;
+    .productInfoHeadingCart .cartAddBox .cartAddBoxPrice {
+        flex: 1;
     }
 }
 
