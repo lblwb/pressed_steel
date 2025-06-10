@@ -194,7 +194,7 @@ if (have_rows('application_areas')) {
             <!-- Характеристики -->
             <div class="productCardTabsView" v-show="productDetail.select.tab.name === 'spec'" id="tab-spec"
                  role="tabpanel">
-                <h2 class="tabsViewMobTitle">Характеристики</h2>
+                <h2 class="tabsViewMobTitle">Отличительные характеристики</h2>
                 <div class="tabsViewWrapper">
                     <?php if ($material): ?>
                         <p><strong>Материал:</strong> <?= esc_html($material); ?></p>
