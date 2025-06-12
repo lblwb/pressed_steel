@@ -31,16 +31,14 @@
                                 </div>
                                 <div class="desc" v-html="item.desc" style="margin-bottom: 20px"></div>
                                 <div class="cardInfoParams" style="display: flex; gap: 10px">
-                                    <div class="cardInfoParamsRow">
-                                        <div class="cardInfoParamsItem">Ячейка: 33x33</div>
-                                        <div class="cardInfoParamsItem">Полоса: 30x2</div>
-                                        <div class="cardInfoParamsItem">Длинна: 700</div>
+                                    <div class="cardInfoParamsRow" v-if="item.attributes">
+                                        <div class="cardInfoParamsItem" v-for="(value,key, item) in item.attributes">{{key}}:{{value}}</div>
                                     </div>
-                                    <div class="cardInfoParamsRow">
-                                        <div class="cardInfoParamsItem">Ширина: 1000</div>
-                                        <div class="cardInfoParamsItem">Покрытие: Цинк</div>
-                                        <div class="cardInfoParamsItem">Обрамление: Тип А</div>
-                                    </div>
+<!--                                    <div class="cardInfoParamsRow">-->
+<!--                                        <div class="cardInfoParamsItem">Ширина: 1000</div>-->
+<!--                                        <div class="cardInfoParamsItem">Покрытие: Цинк</div>-->
+<!--                                        <div class="cardInfoParamsItem">Обрамление: Тип А</div>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -58,13 +56,13 @@
                                             <div class="infoMobQtyBoxWrapper"
                                                  style="display: flex;justify-content: flex-start;">
                                                 <div class="infoMobQtyBoxBtn">
-                                                    <button @click="updateQuantity(index, -1)" style="background: #E9ECF5; border: none; padding: 10px 7px; font-size: 16px">−</button>
+                                                    <button @click="updateQuantity(index,  item.quantity-1)" style="background: #E9ECF5; border: none; padding: 10px 7px; font-size: 16px">−</button>
                                                 </div>
                                                 <div class="infoMobQtyBoxCount" style="background: #fff; padding: 10px 36px;">
                                                     {{ item.quantity }}
                                                 </div>
                                                 <div class="infoMobQtyBoxBtn">
-                                                    <button @click="updateQuantity(index, 1)" style="background: #E9ECF5; border: none; padding: 10px 7px; font-size: 16px">+</button>
+                                                    <button @click="updateQuantity(index,  item.quantity+1)" style="background: #E9ECF5; border: none; padding: 10px 7px; font-size: 16px">+</button>
                                                 </div>
                                             </div>
                                         </div>

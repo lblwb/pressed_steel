@@ -49,7 +49,7 @@ if (have_rows('application_areas')) {
             <meta itemprop="url" content="<?= esc_url($image_url); ?>">
         </figure>
 
-        <div class="wp-block-column productInfo" style="max-width: 40vw;">
+        <div class="wp-block-column productInfo">
             <div class="productInfoHeading">
                 <h1 class="productInfoHeadingTitle" itemprop="name"><?= esc_html($product->get_title()); ?></h1>
                 <div class="productInfoHeadingDesc" itemprop="description">
@@ -81,13 +81,13 @@ if (have_rows('application_areas')) {
                             </div>
                             <div class="cartAddBoxQty">
                                 <div class="cartAddBoxQtyWrapper">
-                                    <div class="cartAddBoxQtyBtn">
+                                    <div class="cartAddBoxQtyBtn" @click="remQty">
                                         -
                                     </div>
-                                    <div class="cartAddBoxQtyCount">
-                                        1
+                                    <div class="cartAddBoxQtyCount" style="max-width: 64px">
+                                        {{ getQtyPrdDetail }}
                                     </div>
-                                    <div class="cartAddBoxQtyBtn">
+                                    <div class="cartAddBoxQtyBtn" @click="addQty">
                                         +
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@ if (have_rows('application_areas')) {
 
 
     <div class="productCardMiddle">
-        <div class="productParams" v-if="rawParams" style="display: flex;justify-content: space-between;">
+        <div class="productParams" v-if="rawParams" style="display: flex;justify-content: space-between; gap: 10px">
             <div class="productParamsItem" v-for="(paramSectItem, pIndex) in rawParams">
                 <div class="productParamsItemHeading">
                     <div class="productParamsItemHeadingTitle">
@@ -232,6 +232,5 @@ if (have_rows('application_areas')) {
 </article>
 
 <script>
-    // Передаем PHP-массив в JS как JSON
     window.productParameters = <?php echo json_encode($vueParams, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
 </script>

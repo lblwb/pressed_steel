@@ -46,7 +46,7 @@ const initFeaturesSliders = () => {
                     const newTitle = activeSlide.dataset.title;
                     const newDesc = activeSlide.dataset.desc;
                     const newPrdUrl = activeSlide.dataset.productUrl;
-                    console.log('active-slide -> ',activeSlide.dataset);
+                    console.log('active-slide -> ', activeSlide.dataset);
 
                     if (titleEls && newTitle) {
                         titleEls.forEach((titleEl) => {
@@ -54,7 +54,7 @@ const initFeaturesSliders = () => {
                         });
                     }
 
-                    if(linkmoreEls && newPrdUrl){
+                    if (linkmoreEls && newPrdUrl) {
                         linkmoreEls.forEach((linkMoreEl) => {
                             linkMoreEl.href = newPrdUrl;
                         });
@@ -143,33 +143,43 @@ const appInit = () => {
                         }
                     }, methods: {
                         async fetchCart() {
-                            const res = await fetch('/wp-admin/admin-ajax.php?action=get_cart_data');
+                            const res = await fetch('/wp-json/pst/v1/cart',{
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            });
                             const data = await res.json();
-                            this.cartItems = data.map(item => ({
-                                ...item, selected: true, total: item.price * item.quantity,
+                            console.log(data);
+                            this.cartItems = data.data.map(item => ({
+                                ...item, selected: true,
+                                total: item.price * item.quantity,
                             }));
                         }, updateQuantity(index, delta) {
                             const item = this.cartItems[index];
-                            const newQty = Math.max(1, item.quantity + delta);
-                            fetch('/wp-admin/admin-ajax.php?action=update_cart', {
+                            // const newQty = Math.max(1, item.quantity + delta);
+                            fetch('/wp-json/pst/v1/cart/update', {
                                 method: 'POST',
-                                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                                body: new URLSearchParams({key: item.key, qty: newQty})
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    // 'X-WP-Nonce': wc_product_data.nonce // Pass nonce
+                                },
+                                body: JSON.stringify({ key: item.key, qty: delta})
                             }).then(() => {
-                                item.quantity = newQty;
+                                item.quantity = delta;
                                 item.total = newQty * item.price;
                             });
                         }, removeItem(index) {
                             const item = this.cartItems[index];
-                            fetch('/wp-admin/admin-ajax.php?action=remove_cart_item', {
+                            fetch('/wp-json/pst/v1/cart/remove', {
                                 method: 'POST',
                                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                                body: new URLSearchParams({key: item.key})
+                                body: new URLSearchParams({ key: item.key,})
                             }).then(() => {
                                 this.cartItems.splice(index, 1);
                             });
                         }, clearCart() {
-                            fetch('/wp-admin/admin-ajax.php?action=clear_cart').then(() => {
+                            fetch('/wp-json/pst/v1/cart/clear').then(() => {
                                 this.cartItems = [];
                             });
                         }, formatPrice(val) {
@@ -191,7 +201,6 @@ const appInit = () => {
         try {
             const productCardDetail = document.querySelector('#productCardDetail');
             if (!productCardDetail) {
-                console.debug('Product card detail element not found');
                 return;
             }
 
@@ -201,6 +210,9 @@ const appInit = () => {
                     const state = Vue.reactive({
                         rawParams: window.productParameters || [],
                         productDetail: {
+                            qty: {
+                                count: 1
+                            },
                             select: {
                                 tab: {
                                     name: 'spec'
@@ -208,7 +220,7 @@ const appInit = () => {
                             }
                         },
                         selected: {},
-                        parameters: []
+                        parameters: [],
                     });
 
                     // Validate rawParams structure
@@ -248,19 +260,38 @@ const appInit = () => {
                         }
                     };
 
-                    // Add to cart method using Fetch
+
+                    const getQtyPrdDetail = Vue.computed(() => {
+                        // if (state.productDetail.count) {
+                            return state.productDetail.qty.count
+                    });
+
+
+                    const addQty = () => {
+                        state.productDetail.qty.count = (state.productDetail.qty.count + 1)
+                    };
+
+                    const remQty = () => {
+                        if(state.productDetail.qty.count < 2){
+                            return
+                        }
+                        state.productDetail.qty.count = state.productDetail.qty.count > 0 ? (state.productDetail.qty.count - 1) : null
+                    };
+
+                    // Add to cart method using Fetch with custom REST API
                     const addToCart = async (event) => {
                         event.preventDefault(); // Prevent default link behavior
                         const link = event.currentTarget;
                         const productId = link.dataset.product_id;
-                        const quantity = link.dataset.quantity || 1;
+                        const quantity = state.productDetail.qty.count;
 
                         // Collect selected parameters
                         const attributes = {};
                         validatedParams.value.forEach((param, index) => {
                             const selectedValue = param.values.find(value => value.selected && value.active);
-                            if (selectedValue && param.attribute_name) {
-                                attributes[`attribute_${param.attribute_name}`] = selectedValue.item;
+                            console.log(param,selectedValue);
+                            if (selectedValue && param.name) {
+                                attributes[`${param.name}`] = selectedValue.item;
                             }
                         });
 
@@ -271,22 +302,24 @@ const appInit = () => {
                             return;
                         }
 
-                        // Prepare form data for WooCommerce AJAX
-                        const formData = new URLSearchParams();
-                        formData.append('action', 'woocommerce_add_to_cart');
-                        formData.append('product_id', productId);
-                        formData.append('quantity', quantity);
-                        Object.entries(attributes).forEach(([key, value]) => {
-                            formData.append(key, value);
-                        });
+                        // Prepare JSON payload for custom REST API
+                        const payload = {
+                            product_id: productId,
+                            quantity: parseInt(quantity),
+                            attributes: attributes,
+                            // custom_fields: validatedParams.value.reduce((acc, param) => {
+                            //     if (param.custom_field) acc[param.custom_field] = param.values.find(v => v.selected)?.item;
+                            //     return acc;
+                            // }, {})
+                        };
 
                         try {
-                            const response = await fetch(wc_add_to_cart_params.ajax_url, {
+                            const response = await fetch('/wp-json/pst/v1/handle-add-cart', {
                                 method: 'POST',
                                 headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                    'Content-Type': 'application/json'
                                 },
-                                body: formData
+                                body: JSON.stringify(payload)
                             });
 
                             if (!response.ok) {
@@ -295,17 +328,17 @@ const appInit = () => {
 
                             const data = await response.json();
 
-                            if (data.error && data.product_url) {
-                                console.error('Add to cart failed:', data);
-                                alert('Failed to add product to cart');
-                            } else {
+                            if (data.success) {
                                 console.log('Product added to cart:', data);
                                 alert('Product successfully added to cart!');
-                                // Trigger WooCommerce's added_to_cart event
+                                // Trigger custom event for front-end updates
                                 const event = new CustomEvent('added_to_cart', {
-                                    detail: { fragments: data.fragments, cart_hash: data.cart_hash }
+                                    detail: { product_id: productId, attributes }
                                 });
                                 document.body.dispatchEvent(event);
+                            } else {
+                                console.error('Add to cart failed:', data.message || 'Unknown error');
+                                alert(`Failed to add product to cart: ${data.message || 'Unknown error'}`);
                             }
                         } catch (error) {
                             console.error('Fetch error:', error);
@@ -334,7 +367,10 @@ const appInit = () => {
                         parameters: state.parameters,
                         toggleSelect,
                         setSelectTab,
-                        addToCart
+                        addToCart,
+                        addQty,
+                        remQty,
+                        getQtyPrdDetail,
                     };
                 }
             }).mount(productCardDetail);
@@ -346,7 +382,7 @@ const appInit = () => {
         try {
             const mainMobNavbar = document.getElementById('mainMobNavbar');
             if (!mainMobNavbar) return console.warn('#mainMobNavbar не найден!');
-            console.log(mainMobNavbar);
+            // console.log(mainMobNavbar);
             Vue.createApp({
                 setup() {
                     const appMobNavbarState = Vue.ref({
@@ -556,7 +592,7 @@ const appInit = () => {
 
                         // pt = "долгота,широта,pm2rdm"
                         // return `https://yandex.ru/map-widget/v1/?ll=${lon},${lat}&z=${zoom}&pt=${lon},${lat},pm2bls&mode=constructor&scroll=true`;
-                        return  point.map_url;
+                        return point.map_url;
                     });
 
                     return {
@@ -571,9 +607,9 @@ const appInit = () => {
         }
     };
 
+    appMobNavbar();
     appCart();
     appProductCard();
-    appMobNavbar();
     appCallToAction();
     appContacts();
 }

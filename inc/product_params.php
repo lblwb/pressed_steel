@@ -139,3 +139,83 @@ function display_product_parameters() {
         echo '</div>';
     }
 }
+
+
+
+add_action('rest_api_init', function () {
+    register_rest_route('pst/v1', '/handle-add-cart', [
+        'methods' => WP_REST_Server::CREATABLE, // Эквивалент 'POST'
+        'callback' => 'pressedsteel_add_to_cart',
+        'permission_callback' => '__return_true', // Доступ для всех
+    ]);
+});
+function pressedsteel_add_to_cart(WP_REST_Request $request) {
+    try {
+        // Ensure WooCommerce is loaded
+        if (!function_exists('WC')) {
+            return new WP_REST_Response([
+                'success' => false,
+                'message' => 'WooCommerce is not loaded'
+            ], 500);
+        }
+
+        // Initialize WooCommerce session
+        if (!WC()->session) {
+            WC()->session = new WC_Session_Handler();
+            WC()->session->init();
+        }
+
+        // Initialize cart if not already set
+        if (!WC()->cart) {
+            WC()->cart = new WC_Cart();
+        }
+
+        // Initialize customer if not already set
+        if (!WC()->customer) {
+            WC()->customer = new WC_Customer(get_current_user_id());
+        }
+
+        $params = $request->get_json_params();
+        $product_id = isset($params['product_id']) ? absint($params['product_id']) : 0;
+        $quantity = isset($params['quantity']) ? absint($params['quantity']) : 1;
+        $attributes = isset($params['attributes']) && is_array($params['attributes']) ? $params['attributes'] : [];
+
+        // Validate product ID
+        if (!$product_id) {
+            return new WP_REST_Response([
+                'success' => false,
+                'message' => 'Product ID is required'
+            ], 400);
+        }
+
+        // Validate product
+        $product = wc_get_product($product_id);
+        if (!$product) {
+            return new WP_REST_Response([
+                'success' => false,
+                'message' => 'Invalid product'
+            ], 404);
+        }
+
+        // Add to cart with attributes as variation data
+        $cart_id = WC()->cart->add_to_cart($product_id, $quantity, 0, $attributes, []);
+
+        if ($cart_id) {
+            return new WP_REST_Response([
+                'success' => true,
+                'message' => 'Product added to cart',
+                'cart_id' => $cart_id
+            ], 200);
+        } else {
+            return new WP_REST_Response([
+                'success' => false,
+                'message' => 'Failed to add product to cart. Ensure attributes match a valid product variation.'
+            ], 400);
+        }
+    } catch (Exception $e) {
+        return new WP_REST_Response([
+            'success' => false,
+            'message' => 'Server error: ' . $e->getMessage()
+        ], 500);
+    }
+}

@@ -514,6 +514,7 @@ body {
 .mainNavbarMobFullFooter {
     display: flex;
     flex-flow: column;
+    padding: 0 16px;
 }
 
 .mainNavbarMobFullFooter .mobFullFooterHeading {
@@ -1106,6 +1107,7 @@ select[class="filterSelect"] {
     /* or 21px */
     text-transform: uppercase;
     color: #FFFFFF;
+    max-width: 200px;
 }
 
 /**/
@@ -2838,6 +2840,9 @@ select[class="filterSelect"] {
 }
 
 @media screen and (max-width: 768px) {
+    #tab-about{
+        display: none!important;
+    }
     .productCardTabs {
         display: none;
     }
@@ -2867,10 +2872,26 @@ select[class="filterSelect"] {
     margin-bottom: 24px;
 }
 
-.tech-specs-list {
-    display: flex;
-    flex-flow: column;
-    gap: 10px;
+.tabsViewWrapper ul {
+    display: inline-list-item;
+    /*flex-flow: column;*/
+    /*gap: 10px;*/
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+
+.tech-specs-list li{
+    font-family: "Roboto",sans-serif;
+}
+
+.tech-specs-list li::before {
+    content: " ";
+    padding: 2px;
+}
+.tech-specs-list li::marker{
+    content: "•";
+    margin-left: 6px;
 }
 
 .application-list {
@@ -2883,13 +2904,13 @@ select[class="filterSelect"] {
 .productCardTabsItem:focus {
     opacity: 0.6;
     background: transparent;
-    border-bottom: solid 1px #0071fe;
+    border-bottom: solid 2px #0071fe;
 }
 
 .productCardTabsItem.__Active {
     /*background: #E9ECF5;*/
     color: #0071fe;
-    border-bottom: solid 1px #0071fe;
+    border-bottom: solid 2px #0071fe;
     opacity: 1;
 }
 
@@ -2922,8 +2943,13 @@ select[class="filterSelect"] {
 }
 
 .tabsViewWrapper {
-    padding: 20px;
-    font-size: 16px;
+    padding: 20px 0;
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0%;
+
 }
 
 /* productCard */
