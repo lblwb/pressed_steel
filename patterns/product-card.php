@@ -131,7 +131,7 @@ if (have_rows('application_areas')) {
 
 
     <div class="productCardMiddle">
-        <div class="productParams" v-if="rawParams" style="display: flex;justify-content: space-between; gap: 10px">
+        <div class="productParams" v-if="rawParams">
             <div class="productParamsItem" v-for="(paramSectItem, pIndex) in rawParams">
                 <div class="productParamsItemHeading">
                     <div class="productParamsItemHeadingTitle">

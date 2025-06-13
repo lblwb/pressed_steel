@@ -2745,8 +2745,27 @@ select[class="filterSelect"] {
     margin-bottom: 80px;
 }
 
+.productCardMiddle .productParams {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 20px 66px;
+    /* display: flex;justify-content: space-between; gap: 10px*/
+}
+
+@media screen and (max-width: 768px) {
+    .productCardMiddle .productParams {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        gap: 18px 12px;
+        /* display: flex;justify-content: space-between; gap: 10px*/
+    }
+}
+
 .productParamsItem {
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
+    max-width: 385px;
 }
 
 .productParamsItemHeading {
@@ -2840,9 +2859,10 @@ select[class="filterSelect"] {
 }
 
 @media screen and (max-width: 768px) {
-    #tab-about{
-        display: none!important;
+    #tab-about {
+        display: none !important;
     }
+
     .productCardTabs {
         display: none;
     }
@@ -2881,15 +2901,16 @@ select[class="filterSelect"] {
 }
 
 
-.tech-specs-list li{
-    font-family: "Roboto",sans-serif;
+.tech-specs-list li {
+    font-family: "Roboto", sans-serif;
 }
 
 .tech-specs-list li::before {
     content: " ";
     padding: 2px;
 }
-.tech-specs-list li::marker{
+
+.tech-specs-list li::marker {
     content: "•";
     margin-left: 6px;
 }
@@ -3167,11 +3188,12 @@ select[class="filterSelect"] {
     text-align: center;
 }
 
-.cartOrderBlockItem{
-    background: #E9ECF5; gap: 40px
+.cartOrderBlockItem {
+    background: #E9ECF5;
+    gap: 40px
 }
 
-.cartOrderBlockItemSelected{
+.cartOrderBlockItemSelected {
     height: 100%;
     display: flex;
     justify-content: center;
@@ -3179,59 +3201,67 @@ select[class="filterSelect"] {
     min-width: 20px;
 }
 
-.cartOrderBlockItemImg{
+.cartOrderBlockItemImg {
     flex: 0
 }
-.cartOrderBlockInfo{
+
+.cartOrderBlockInfo {
     flex: 1
 }
 
-.cartOrderBlockInfoMobPrice{
+.cartOrderBlockInfoMobPrice {
     display: flex;
     flex-flow: column;
     gap: 4px;
 }
 
 .cartOrderBlockInfoMobPrice .infoMobQtyHeading,
-.cartOrderBlockInfoMobQty .infoMobQtyHeading{
+.cartOrderBlockInfoMobQty .infoMobQtyHeading {
     margin-bottom: 60px;
 
 }
 
-.cartOrderBlockDelMb{
+.cartOrderBlockDelMb {
     display: none;
 }
 
-.cartOrderBlockInfoMobWrapper{
-    display: flex;justify-content: space-between;align-items: center;gap: 80px;
+.cartOrderBlockInfoMobWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
 }
 
 @media screen and (max-width: 960px) {
-    .cartOrderBlockDelMb{
-        display: block;
-    }
-    .cartOrderBlockDelMb .cartOrderBlockDel{
+    .cartOrderBlockDelMb {
         display: block;
     }
 
-    .cartOrderBlockInfoMobWrapper{
-        display: flex;justify-content: space-between;align-items: flex-end;gap: 18px;
+    .cartOrderBlockDelMb .cartOrderBlockDel {
+        display: block;
+    }
+
+    .cartOrderBlockInfoMobWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 18px;
     }
 
 
-    .cartContent{
+    .cartContent {
         gap: 8px;
         margin-bottom: 24px;
     }
 
 
-    .cartOrderBlockInfoMobPrice{
+    .cartOrderBlockInfoMobPrice {
 
     }
 
     .cartOrderBlockInfoMobPrice .infoMobQtyHeading,
-    .cartOrderBlockInfoMobQty .infoMobQtyHeading{
-        margin-bottom: 4px!important;
+    .cartOrderBlockInfoMobQty .infoMobQtyHeading {
+        margin-bottom: 4px !important;
     }
 
     .cartOrderBlockItemSelected {
@@ -3251,7 +3281,6 @@ select[class="filterSelect"] {
         padding-top: 60px;
         margin-bottom: 24px;
     }
-
 
 
     .cartOrderBlockItemImg {
