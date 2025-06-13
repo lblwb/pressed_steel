@@ -7,8 +7,9 @@
         </div>
         <div class="cartBody">
             <div class="cartBodyWrapper">
+<!--                {{cartItems}}-->
                 <div class="cartContent" v-if="cartItems && cartItems.length" style="background: #fff;">
-                    <div class="cartOrderBlockItem" v-for="(item, index) in cartItems" :key="item.key"
+                    <div class="cartOrderBlockItem" v-for="(item, index) in cartItems" :key="item"
                          style="">
                         <div class="cartOrderBlockItemSelected" v-if="item.selected" @click="item.selected = 0">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,7 +119,7 @@
                     <h2>Корзина пустая!</h2>
                 </div>
 
-                <div class="cartSidebar">
+                <div class="cartSidebar" v-if="cartItems && cartItems.length">
 
                     <div class="submitOrderBlock clearCartBlock clearCartBlockMb" style="">
                         <a href="#" @click.prevent="clearCart" class="clearCartBtn">Очистить корзину</a>
@@ -155,7 +156,9 @@
                                                 Сумма заказа:
                                             </div>
                                             <div class="orderTotalSummary">
-                                                {{ formatPrice(totalSum) }}
+<!--                                                {{ formatPrice(totalSum) }}-->
+<!--                                                {{ formatPrice(totalSum) }}-->
+                                                По запросу
                                             </div>
                                         </div>
                                     </div>

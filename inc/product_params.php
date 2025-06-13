@@ -184,7 +184,7 @@ function pressedsteel_add_to_cart(WP_REST_Request $request) {
         if (!$product_id) {
             return new WP_REST_Response([
                 'success' => false,
-                'message' => 'Product ID is required'
+                'message' => 'Не получилось добавить!'
             ], 400);
         }
 
@@ -193,7 +193,7 @@ function pressedsteel_add_to_cart(WP_REST_Request $request) {
         if (!$product) {
             return new WP_REST_Response([
                 'success' => false,
-                'message' => 'Invalid product'
+                'message' => 'Ошибка при добавлении товара!'
             ], 404);
         }
 
@@ -203,7 +203,7 @@ function pressedsteel_add_to_cart(WP_REST_Request $request) {
         if ($cart_id) {
             return new WP_REST_Response([
                 'success' => true,
-                'message' => 'Product added to cart',
+                'message' => 'Товар добавлен в корзину',
                 'cart_id' => $cart_id
             ], 200);
         } else {
@@ -219,3 +219,231 @@ function pressedsteel_add_to_cart(WP_REST_Request $request) {
         ], 500);
     }
 }
+
+/**
+ * CART
+ */
+
+
+// Get cart data
+function pst_get_cart_data(WP_REST_Request $request) {
+    try {
+        $init = pst_init_woocommerce();
+        if (is_wp_error($init)) {
+            return new WP_REST_Response($init->get_error_data(), $init->get_error_code());
+        }
+
+        $result = [];
+        foreach (WC()->cart->get_cart() as $key => $item) {
+            $product = $item['data'];
+            $result[] = [
+                'key' => $key,
+                'name' => $product->get_name(),
+                'desc' => $product->get_short_description(),
+                'image' => get_the_post_thumbnail_url($product->get_id(), 'thumbnail') ?: '',
+                'quantity' => $item['quantity'],
+                'price' => (float) $product->get_price(),
+                'product_id' => base64_encode($product->get_id()),
+                'attributes' =>$item['variation'],
+            ];
+        }
+
+        return new WP_REST_Response([
+            'success' => true,
+            'data' => $result,
+            'message' => 'Cart data retrieved successfully'
+        ], 200);
+    } catch (Exception $e) {
+        return new WP_REST_Response([
+            'success' => false,
+            'message' => 'Server error: ' . $e->getMessage()
+        ], 500);
+    }
+}
+
+// Update cart item quantity
+function pst_update_cart(WP_REST_Request $request) {
+    try {
+        $init = pst_init_woocommerce();
+        if (is_wp_error($init)) {
+            return new WP_REST_Response($init->get_error_data(), $init->get_error_code());
+        }
+
+        $params = $request->get_json_params();
+        $key = isset($params['key']) ? sanitize_text_field($params['key']) : '';
+        $quantity = isset($params['qty']) ? absint($params['qty']) : 0;
+
+        // Validate inputs
+        if (empty($key)) {
+            return new WP_REST_Response([
+                'success' => false,
+                'message' => 'Cart item key is required'
+            ], 400);
+        }
+
+        if ($quantity < 1) {
+            $removed = WC()->cart->remove_cart_item($key);
+            if (!$removed) {
+                return new WP_REST_Response([
+                    'success' => false,
+                    'message' => 'Failed to remove cart item'
+                ], 400);
+            }
+
+//            return new WP_REST_Response([
+//                'success' => false,
+//                'message' => 'Quantity cannot be negative'
+//            ], 400);
+        }
+
+        // Check if cart item exists
+        $cart_contents = WC()->cart->get_cart();
+        if (!isset($cart_contents[$key])) {
+            return new WP_REST_Response([
+                'success' => false,
+                'message' => 'Invalid cart item key: ' . $key
+            ], 400);
+        }
+
+        // Update quantity
+        $updated = WC()->cart->set_quantity($key, $quantity, true); // true to refresh totals
+
+        // If quantity is 0, remove the item
+//        if ($quantity === 0) {
+//            $removed = WC()->cart->remove_cart_item($key);
+//            if (!$removed) {
+//                return new WP_REST_Response([
+//                    'success' => false,
+//                    'message' => 'Failed to remove cart item'
+//                ], 400);
+//            }
+//        }
+
+        // Recalculate cart totals to ensure persistence
+        WC()->cart->calculate_totals();
+
+        // Verify update
+        $current_quantity = isset(WC()->cart->get_cart()[$key]) ? WC()->cart->get_cart()[$key]['quantity'] : 0;
+
+        return new WP_REST_Response([
+            'success' => $updated && ($quantity === 0 || $current_quantity === $quantity),
+            'message' => $quantity === 0 ? 'Позиция  удалена из корзины' : 'Корзина обновлена',
+            'data' => [
+                'key' => $key,
+                'quantity' => $current_quantity
+            ]
+        ], 200);
+    } catch (Exception $e) {
+        return new WP_REST_Response([
+            'success' => false,
+            'message' => 'Server error: ' . $e->getMessage()
+        ], 500);
+    }
+}
+// Remove cart item
+function pst_remove_cart_item(WP_REST_Request $request) {
+    try {
+        $init = pst_init_woocommerce();
+        if (is_wp_error($init)) {
+            return new WP_REST_Response($init->get_error_data(), $init->get_error_code());
+        }
+
+        $params = $request->get_json_params();
+        $key = isset($params['key']) ? sanitize_text_field($params['key']) : '';
+
+//        var_dump($key);
+
+        if (!$key) {
+            return new WP_REST_Response([
+                'success' => false,
+                'message' => 'Invalid cart item key'
+            ], 400);
+        }
+
+        $removed = WC()->cart->remove_cart_item($key);
+        WC()->cart->remove_cart_item($key);
+
+        return new WP_REST_Response([
+            'success' => $removed,
+            'del_key' => $key,
+            'cart' => WC()->cart->get_cart(),
+            'message' => $removed ? 'Item removed from cart' : 'Failed to remove item'
+        ], 200);
+    } catch (Exception $e) {
+        return new WP_REST_Response([
+            'success' => false,
+            'message' => 'Server error: ' . $e->getMessage()
+        ], 500);
+    }
+}
+
+// Clear cart
+function pst_clear_cart(WP_REST_Request $request) {
+    try {
+        $init = pst_init_woocommerce();
+        if (is_wp_error($init)) {
+            return new WP_REST_Response($init->get_error_data(), $init->get_error_code());
+        }
+
+        WC()->cart->empty_cart();
+
+        return new WP_REST_Response([
+            'success' => true,
+            'message' => 'Cart cleared successfully'
+        ], 200);
+    } catch (Exception $e) {
+        return new WP_REST_Response([
+            'success' => false,
+            'message' => 'Server error: ' . $e->getMessage()
+        ], 500);
+    }
+}
+
+
+require_once "pst_order_handler.php";
+
+/**
+ *
+ */
+
+add_action('rest_api_init', function () {
+    $orderHandler = new PressedSteelOrderHandler();
+
+    // Get cart data
+    register_rest_route('pst/v1', '/cart', [
+        'methods' => WP_REST_Server::READABLE, // GET
+        'callback' => 'pst_get_cart_data',
+        'permission_callback' => '__return_true', // Public access for viewing cart
+    ]);
+
+    // Update cart item quantity
+    register_rest_route('pst/v1', '/cart/submit_cart', [
+        'methods' => WP_REST_Server::CREATABLE, // POST
+        'callback' => [$orderHandler, 'handle_request'],
+        'permission_callback' => '__return_true', // Public access for viewing cart
+//            'permission_callback' => function () {
+//                return check_ajax_referer('wc_cart_nonce', 'nonce', false);
+//            }
+    ]);
+
+    // Update cart item quantity
+    register_rest_route('pst/v1', '/cart/update', [
+        'methods' => WP_REST_Server::CREATABLE, // POST
+        'callback' => 'pst_update_cart',
+        'permission_callback' => '__return_true', // Public access for viewing cart
+    ]);
+
+    // Remove cart item
+    register_rest_route('pst/v1', '/cart/remove', [
+        'methods' => WP_REST_Server::CREATABLE, // POST
+        'callback' => 'pst_remove_cart_item',
+        'permission_callback' => '__return_true', // Public access for viewing cart
+    ]);
+
+    // Clear cart
+    register_rest_route('pst/v1', '/cart/clear', [
+        'methods' => WP_REST_Server::CREATABLE, // POST
+        'callback' => 'pst_clear_cart',
+        'permission_callback' => '__return_true', // Public access for viewing cart
+    ]);
+});

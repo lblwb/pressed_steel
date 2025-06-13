@@ -1,3 +1,46 @@
+const showNotify = ({ icon = 'ℹ️', title = '', message = '', type = 'info', duration = 5000 }) => {
+    jQuery.notify.addStyle('customStyle', {
+        html: `
+    <div class="notifyjs-customStyle-base" style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; min-width: 300px; max-width: 400px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); background: #fff; color: #000;">
+      <div class="icon" style="font-size: 22px;" data-notify-html="icon"></div>
+      <div class="content">
+        <div class="title" style="margin-bottom: 8px">
+        <strong data-notify-html="title"></strong>
+        </div>
+        <div data-notify-html="message"></div>
+      </div>
+       <button class="notifyjs-close-btn" style="
+        position: absolute; 
+        top: 10px; 
+        right: 10px; 
+        border: none; 
+        background: transparent; 
+        font-size: 24px; 
+        cursor: pointer; 
+        color: #999;
+        transition: color 0.2s ease;
+      ">&times;</button>
+    </div>
+  `,
+        classes: {
+            base: {},
+        }
+    });
+
+    jQuery.notify({
+        icon: icon,
+        title: title,
+        message: message
+    }, {
+        style: 'customStyle',
+        autoHide: true,
+        autoHideDelay: duration,
+        clickToHide: true,
+        position: 'right top',
+        // Можно управлять закрытием крестиком, если хочешь, добавь сюда свой код.
+    });
+}
+
 const initFeaturesSliders = () => {
     const sliders = document.querySelectorAll(".featuresBlockBodySlider");
     sliders.forEach((sliderEl) => {
@@ -143,14 +186,14 @@ const appInit = () => {
                         }
                     }, methods: {
                         async fetchCart() {
-                            const res = await fetch('/wp-json/pst/v1/cart',{
+                            const res = await fetch('/wp-json/pst/v1/cart', {
                                 method: 'GET',
                                 headers: {
                                     'Content-Type': 'application/json'
                                 }
                             });
                             const data = await res.json();
-                            console.log(data);
+                            // console.log(data);
                             this.cartItems = data.data.map(item => ({
                                 ...item, selected: true,
                                 total: item.price * item.quantity,
@@ -164,28 +207,96 @@ const appInit = () => {
                                     'Content-Type': 'application/json',
                                     // 'X-WP-Nonce': wc_product_data.nonce // Pass nonce
                                 },
-                                body: JSON.stringify({ key: item.key, qty: delta})
-                            }).then(() => {
+                                body: JSON.stringify({key: item.key, qty: delta})
+                            }).then(async () => {
                                 item.quantity = delta;
-                                item.total = newQty * item.price;
+                                // item.total = newQty * item.price;
+                                if (delta == 0) {
+                                    delete item;
+                                }
+                                //
+                                await this.fetchCart();
                             });
                         }, removeItem(index) {
                             const item = this.cartItems[index];
                             fetch('/wp-json/pst/v1/cart/remove', {
                                 method: 'POST',
-                                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                                body: new URLSearchParams({ key: item.key,})
-                            }).then(() => {
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({key: item.key})
+                            }).then(async () => {
                                 this.cartItems.splice(index, 1);
+                                showNotify({
+                                    icon: '✅',
+                                    title: `Товар удален из корзины`,
+                                    message: `Вы удалил  — <strong>${item.name}</strong> из коризны.`
+                                });
+                                await this.fetchCart()
                             });
                         }, clearCart() {
-                            fetch('/wp-json/pst/v1/cart/clear').then(() => {
+                            fetch('/wp-json/pst/v1/cart/clear', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    // 'X-WP-Nonce': wc_product_data.nonce // Если потребуется безопасность
+                                },
+                                // body: JSON.stringify({cartItems: this.cartItems, form: this.form})
+                            }).then(async () => {
                                 this.cartItems = [];
+                                await this.fetchCart();
+                                showNotify({
+                                    icon: '✅',
+                                    title: 'Корзина очищена',
+                                    message: 'Все товары были удалены из вашей корзины.'
+                                });
+                            }).catch((error) => {
+                                console.error('Ошибка запроса:', error);
+                                showNotify({
+                                    icon: '🚫',
+                                    title: 'Ошибка соединения',
+                                    message: 'Не удалось установить соединение с сервером'
+                                });
                             });
                         }, formatPrice(val) {
                             return val.toLocaleString('ru-RU') + ' ₽';
                         }, submitOrder() {
-                            alert("Заявка отправлена!"); // Здесь можно обработать отправку формы
+                            fetch('/wp-json/pst/v1/cart/submit_cart', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    // 'X-WP-Nonce': wc_product_data.nonce // Если потребуется безопасность
+                                },
+                                body: JSON.stringify({cartItems: this.cartItems, form: this.form})
+                            })
+                                .then(async (res) => {
+                                    const data = await res.json();
+
+                                    if (res.ok && data.success) {;
+                                        showNotify({
+                                            icon: '✅',
+                                            title: 'Заказ успешно создан!',
+                                            message: 'Мы свяжемся с вами в ближайшие время!'
+                                        });
+                                        this.clearCart();
+                                        this.fetchCart();
+                                    } else {
+                                        console.error(data);
+                                        showNotify({
+                                            icon: '⚠',
+                                            title: 'Ошибка при отправке',
+                                            // message: ''
+                                        });
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.error('Ошибка запроса:', error);
+                                    showNotify({
+                                        icon: '🚫',
+                                        title: 'Ошибка не удалось отправить',
+                                        // message: ''
+                                    });
+                                });
                         }
                     }, mounted() {
                         this.fetchCart();
@@ -263,7 +374,7 @@ const appInit = () => {
 
                     const getQtyPrdDetail = Vue.computed(() => {
                         // if (state.productDetail.count) {
-                            return state.productDetail.qty.count
+                        return state.productDetail.qty.count
                     });
 
 
@@ -272,7 +383,7 @@ const appInit = () => {
                     };
 
                     const remQty = () => {
-                        if(state.productDetail.qty.count < 2){
+                        if (state.productDetail.qty.count < 2) {
                             return
                         }
                         state.productDetail.qty.count = state.productDetail.qty.count > 0 ? (state.productDetail.qty.count - 1) : null
@@ -283,13 +394,14 @@ const appInit = () => {
                         event.preventDefault(); // Prevent default link behavior
                         const link = event.currentTarget;
                         const productId = link.dataset.product_id;
+                        const productName = link.dataset.product_name;
                         const quantity = state.productDetail.qty.count;
 
                         // Collect selected parameters
                         const attributes = {};
                         validatedParams.value.forEach((param, index) => {
                             const selectedValue = param.values.find(value => value.selected && value.active);
-                            console.log(param,selectedValue);
+                            console.log(param, selectedValue);
                             if (selectedValue && param.name) {
                                 attributes[`${param.name}`] = selectedValue.item;
                             }
@@ -298,7 +410,10 @@ const appInit = () => {
                         // Validate product ID
                         if (!productId) {
                             console.error('Product ID is missing');
-                            alert('Error: Product ID is missing');
+                            showNotify({
+                                icon: '⚠️',
+                                title: "Ошибка с товаром!"
+                            })
                             return;
                         }
 
@@ -330,19 +445,31 @@ const appInit = () => {
 
                             if (data.success) {
                                 console.log('Product added to cart:', data);
-                                alert('Product successfully added to cart!');
+                                showNotify({
+                                    icon: '🛒',
+                                    title: 'Товар добавлен',
+                                    message: `Товар — <strong>${productName}</strong> успешно добавлен в корзину.`
+                                })
                                 // Trigger custom event for front-end updates
                                 const event = new CustomEvent('added_to_cart', {
-                                    detail: { product_id: productId, attributes }
+                                    detail: {product_id: productId, attributes}
                                 });
                                 document.body.dispatchEvent(event);
                             } else {
                                 console.error('Add to cart failed:', data.message || 'Unknown error');
-                                alert(`Failed to add product to cart: ${data.message || 'Unknown error'}`);
+                                showNotify({
+                                    icon:'⚠️',
+                                    title: 'Не удалось добавить',
+                                    message: 'Не удалось добавить товар в корзину!'
+                                })
                             }
                         } catch (error) {
                             console.error('Fetch error:', error);
-                            alert('An error occurred while adding to cart');
+                            showNotify({
+                                icon:'⚠️',
+                                title: 'Не успешно',
+                                message: 'Не удалось добавить товар!'
+                            })
                         }
                     };
 
@@ -464,7 +591,11 @@ const appInit = () => {
 
                         const submitForm = () => {
                             if (!form.fullname || !form.phone || !form.email) {
-                                alert('Пожалуйста, заполните обязательные поля: ФИО, телефон, email');
+                                showNotify({
+                                    icon: 'x',
+                                    title: 'Пожалуйста, заполните обязательные поля:',
+                                    message: 'ФИО, телефон, email'
+                                });
                                 return;
                             }
 
@@ -489,17 +620,30 @@ const appInit = () => {
                                 .then(res => res.json())
                                 .then(json => {
                                     if (json.success) {
-                                        alert('Форма отправлена!');
+                                        showNotify({
+                                            icon: '✅',
+                                            title: 'Заявка отправлена',
+                                            message: 'Ваша заявка успешно принята!'
+                                        });
                                         // закрываем нужный попап
                                         if (formData.get('formType') === 'poupup') togglePoupup();
                                         else togglePoupupConsult();
                                     } else {
-                                        alert('Ошибка: ' + json.data);
+                                        console.error('Ошибка: ' + json.data);
+                                        showNotify({
+                                            icon: '⚠️',
+                                            title: 'Ошибка при отправке заявки',
+                                            message: 'Не удалось отправить заявку!'
+                                        });
                                     }
                                 })
                                 .catch(err => {
                                     console.error(err);
-                                    alert('Сетевая ошибка при отправке формы');
+                                    showNotify({
+                                        icon: '✅',
+                                        title: 'Заказ успешно создан!',
+                                        message: 'Мы свяжемся с вами в ближайшие время!'
+                                    });
                                 });
                         };
 

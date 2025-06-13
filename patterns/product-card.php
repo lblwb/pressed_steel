@@ -66,6 +66,7 @@ if (have_rows('application_areas')) {
                                         class="blockActionBtn blockActionBtn __Active add_to_cart_button"
                                         @click="addToCart"
                                         data-product_id="<?php echo $product_id ?>"
+                                        data-product_name="<?php echo $product->get_name() ?>"
                                         rel="nofollow"
                                         style="display: inline-flex;"
                                         :aria-label="'Добавить ' + productName + ' в корзину?'"
