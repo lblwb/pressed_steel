@@ -1289,6 +1289,10 @@ select[class="filterSelect"] {
     align-self: stretch;
 }
 
+.featuresBlock .featuresBlockBodyHeadingDesc br{
+    display: block;
+}
+
 .featuresBlock .featuresBlockBodyHeadingDesc.__Slice {
     max-width: 445px;
 }
@@ -1845,6 +1849,7 @@ select[class="filterSelect"] {
 
 .featuresBlockBodyFiImg img {
     width: 100%;
+    min-height: 480px;
     /*min-width: 54vw;*/
 }
 

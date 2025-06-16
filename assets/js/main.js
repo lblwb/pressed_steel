@@ -84,7 +84,7 @@ const initFeaturesSliders = () => {
 
                     const titleEls = document.querySelectorAll("main.featuresBlockBody .featuresBlockBodyHeadingTitle");
                     const descEls = document.querySelectorAll("main.featuresBlockBody .featuresBlockBodyHeadingDesc");
-                    const linkmoreEls = document.querySelectorAll("main.featuresBlockBody .featuresBlockMoreBtn a");
+                    const linkmoreEls = document.querySelectorAll("main.featuresBlockBody .featuresBlockMoreBtn a.__PrdLink");
 
                     const newTitle = activeSlide.dataset.title;
                     const newDesc = activeSlide.dataset.desc;
@@ -175,7 +175,7 @@ const appInit = () => {
                         return {
                             cartItems: [], // товары из корзины
                             form: {
-                                org: '', inn: '', fio: '', phone: '', email: ''
+                                org: '', inn: '', fio: '', phone: '', email: '', comment: '',
                             },
                         };
                     }, computed: {

@@ -137,8 +137,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="submitOrderBlock" style="">
+                            <div class="submitOrderBlock">
                                 <div class="submitOrderBlockWrapper">
                                     <div class="submitOrderInput">
                                         <input v-model="form.fio" placeholder="ФИО"/>
@@ -148,6 +147,9 @@
                                     </div>
                                     <div class="submitOrderInput">
                                         <input v-model="form.email" placeholder="E-mail"/>
+                                    </div>
+                                    <div class="submitOrderInput">
+                                        <input v-model="form.comment" placeholder="Комментарий"/>
                                     </div>
 
                                     <div class="submitOrderTotal">

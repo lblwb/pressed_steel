@@ -32,7 +32,7 @@
                 </header>
 
                 <div class="featuresBlockMoreBtn">
-                    <a href="/" class="blockActionBtn __Active button is-style-fill" style="color: white;"
+                    <a href="/" class="blockActionBtn __Active button is-style-fill __PrdLink" style="color: white;"
                        role="button" aria-label="Подробнее о продукции">
                         <div class="blockActionBtnWrapper">
                             <span class="blockActionBtnTitle">Подробнее</span>

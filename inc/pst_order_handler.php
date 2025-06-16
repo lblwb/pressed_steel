@@ -47,9 +47,12 @@ class PressedSteelOrderHandler
                 'fio' => sanitize_text_field($form['fio'] ?? ''),
                 'phone' => sanitize_text_field($form['phone'] ?? ''),
                 'email' => sanitize_email($form['email'] ?? ''),
+                'comment' => sanitize_text_field($form['comment'] ?? ''),
                 'cartItems' => $cartItems,
                 'order_date' => date('d.m.Y H:i'),
             ];
+
+//            return var_dump($form['comment']);
 
 //            return var_dump($this->admin_email);
 
@@ -90,9 +93,9 @@ class PressedSteelOrderHandler
         $inn = esc_html($data['inn']);
         $phone = esc_html($data['phone']);
         $email = esc_html($data['email']);
+        $comment = esc_html($data['comment']);
         $cartItems = $data['cartItems'];
         $order_date = esc_html($data['order_date']);
-
         $message = '';
 
         if ($is_admin) {
@@ -111,6 +114,7 @@ class PressedSteelOrderHandler
         $message .= "<li><strong>ИНН:</strong> {$inn}</li>";
         $message .= "<li><strong>Телефон:</strong> {$phone}</li>";
         $message .= "<li><strong>Email:</strong> {$email}</li>";
+        $message .= "<li><strong>Комментарий:</strong> {$comment}</li>";
         $message .= '</ul>';
         $message .= '<hr><br>';
 
