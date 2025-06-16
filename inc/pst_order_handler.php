@@ -19,10 +19,9 @@ class PressedSteelOrderHandler
 {
 
     private string $admin_email = 'info@pressedsteel.ru';
-//    private string $admin_email = 'df77ks7lvz@ibolinva.com'; // d4k5
     private string $from_email = 'site@pressedsteel.ru';
     private string $from_name = 'Pressed Steel Site';
-    private string $info_email = 'info@pressedSteel.ru';
+    private string $info_email = 'info@pressedsteel.ru';
 
     /**
      * Обработчик REST-запроса
