@@ -154,28 +154,31 @@ function render_custom_mob_navbar()
 }
 
 
-
 // Initialize WooCommerce objects
-function pst_init_woocommerce() {
-    if (!function_exists('WC')) {
-        return new WP_Error('woocommerce_not_loaded', 'WooCommerce is not loaded', ['status' => 500]);
-    }
+function pst_init_woocommerce()
+{
 
-    if (null === WC()->session) {
-        WC()->initialize_session();
-    }
+    if (!is_admin()) {
+        if (!function_exists('WC')) {
+            return new WP_Error('woocommerce_not_loaded', 'WooCommerce is not loaded', ['status' => 500]);
+        }
 
-    if (null === WC()->cart) {
-        WC()->cart = new WC_Cart();
-        WC()->cart->get_cart(); // триггер загрузки
-    }
+        if (null === WC()->session) {
+            WC()->initialize_session();
+        }
 
-    // Initialize customer
-    if (!WC()->customer) {
-        WC()->customer = new WC_Customer(get_current_user_id());
-    }
+        if (null === WC()->cart) {
+            WC()->cart = new WC_Cart();
+            WC()->cart->get_cart(); // триггер загрузки
+        }
 
-    return true;
+        // Initialize customer
+        if (!WC()->customer) {
+            WC()->customer = new WC_Customer(get_current_user_id());
+        }
+
+        return true;
+    }
 }
 
 add_action('init', 'pst_init_woocommerce');
