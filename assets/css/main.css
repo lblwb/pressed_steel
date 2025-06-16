@@ -250,13 +250,13 @@ body {
 
 /**/
 
-/*body.page-template-default .pageBody .wp-block-heading{*/
-/*    margin-bottom: 24px;*/
-/*}*/
+body.page-template-default .pageBody .wp-block-heading{
+    margin-bottom: 24px;
+}
 
-/*body.page-template-default .pageBody p{*/
-/*    line-height: 22px;*/
-/*}*/
+body.page-template-default .pageBody p{
+    line-height: 22px;
+}
 
 .pageBody {
     min-height: 50vh;
