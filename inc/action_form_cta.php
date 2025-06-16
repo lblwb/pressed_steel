@@ -58,9 +58,13 @@ function pressedsteel_send_form()
         $body .= "<p><strong>Комментарий:</strong> {$comment}</p>";
     }
 
+
+
+    $from_name = "Pressed Steel Site";
+    $from_email = "site@pressedsteel.ru";
     // Email headers
     $headers = [
-        'From: Pressed Steel Site <site@pressedsteel.ru>',
+        'From: '.$from_name.' <'.$from_email.'>',
         'Reply-To: ' . $email,
         'Content-Type: text/html; charset=UTF-8',
     ];
@@ -86,10 +90,10 @@ function pressedsteel_send_form()
     }
 
     // Send email
-    $to = 'site@pressedsteel.ru';
+    $to = 'info@pressedsteel.ru';
+//    $to = 'site@pressedsteel.ru';
 //    $to = 'cq3vanoj1d@ibolinva.com';
     $sent = wp_mail($to, $subject, $body, $headers, $attachments);
-
 
     //Send client
 
@@ -239,7 +243,7 @@ HTML;
 
 
     $headers_client = [
-        'From: Pressed Steel Site <site@pressedsteel.ru>',
+        'From: '.$from_name.' <'.$from_email.'>',
         'Content-Type: text/html; charset=UTF-8',
     ];
 
