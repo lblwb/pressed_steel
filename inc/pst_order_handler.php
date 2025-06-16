@@ -18,8 +18,8 @@
 class PressedSteelOrderHandler
 {
 
-    private string $admin_email = 'site@pressedsteel.ru';
-//    private string $admin_email = 'd4k5xq5esm@osxofulk.com';
+    private string $admin_email = 'info@pressedsteel.ru';
+//    private string $admin_email = 'df77ks7lvz@ibolinva.com'; // d4k5
     private string $from_email = 'site@pressedsteel.ru';
     private string $from_name = 'Pressed Steel Site';
     private string $info_email = 'info@pressedSteel.ru';
@@ -52,19 +52,23 @@ class PressedSteelOrderHandler
                 'order_date' => date('d.m.Y H:i'),
             ];
 
-            // Письмо администратору
-            $admin_subject = '🛒 Новый заказ с сайта: [pressedsteel.ru]';
-            $admin_message = $this->build_email_message($data, true);
-            $admin_sent = $this->send_email($this->admin_email, $admin_subject, $admin_message, $data['email']);
-            if (!$admin_sent) {
-                return $this->error_response('Не удалось отправить!', 500);
-            }
+//            return var_dump($this->admin_email);
+
+//            return;
 
             // Письмо клиенту
             if (!empty($data['email'])) {
                 $client_subject = 'Ваш заказ на pressedsteel.ru';
                 $client_message = $this->build_email_message($data, false);
-                $this->send_email($data['email'], $client_subject, $client_message, $this->admin_email);
+                $this->send_email(esc_html($data['email']), $client_subject, $client_message, $this->admin_email);
+            }
+
+            // Письмо администратору
+            $admin_subject = '🛒 Новый заказ с сайта: [pressedsteel.ru]';
+            $admin_message = $this->build_email_message($data, true);
+            $admin_sent = $this->send_email(esc_html($this->admin_email), $admin_subject, $admin_message, esc_html($data['email']));
+            if (!$admin_sent) {
+                return $this->error_response('Не удалось отправить!', 500);
             }
 
             return $this->success_response('Заказ успешно отправлен!');
@@ -182,6 +186,8 @@ class PressedSteelOrderHandler
             $headers[] = 'Reply-To: ' . sanitize_email($reply_to);
         }
 
+
+//        wp_log()
         return wp_mail($to, $subject, $message, $headers);
     }
 
