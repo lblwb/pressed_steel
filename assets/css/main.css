@@ -1853,6 +1853,8 @@ select[class="filterSelect"] {
     width: 100%;
     position: relative;
     z-index: 14;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .featuresBlockBodyFiImg img {
@@ -1862,6 +1864,7 @@ select[class="filterSelect"] {
     max-height: 420px;
     object-fit: cover;
     object-position: top;
+    max-width: 927px;
     /*min-width: 54vw;*/
 }
 
