@@ -205,8 +205,8 @@ if (have_rows('application_areas')) {
                         <ul class="tech-specs-list">
                             <?php foreach ($tech_specs as $spec): ?>
                                 <li>
-                                    <strong><?= esc_html($spec['spec_name']); ?>
-                                        :</strong> <?= esc_html($spec['spec_value']); ?>
+                                    <?php if($spec['spec_name']):?> <strong><?= esc_html($spec['spec_name']); ?>
+                                        :</strong> <?php endif; ?> <?= esc_html($spec['spec_value']); ?>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
