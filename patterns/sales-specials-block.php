@@ -16,6 +16,8 @@
 ?>
 
 
+<?php $i = 1; ?>
+
 <?php
 // Query specials
 $query = new WP_Query(array(
@@ -33,16 +35,14 @@ $query = new WP_Query(array(
             <div class="featuresBlockHeadingWrap" style="display: flex; justify-content: space-between">
                 <div class="featuresBlockHeading" style="width: 100%">
                     <div class="featuresBlockHeadingTitle" style="display: flex; width: 100%;">
-                        <span class="headingTitle __HighActive" style="flex: 0;">01</span>
-                        <span style="flex: auto; text-align: center; width: 100%"><?php echo get_the_title() ?></span>
+                        <span class="headingTitle __HighActive"><?php echo str_pad($i++, 2, '0', STR_PAD_LEFT); ?></span>
+                        <span style="flex: auto; text-align: center; width: 100%"><?php echo esc_html(get_the_title()); ?></span>
                     </div>
                 </div>
             </div>
 
-            <div class="featuresBlockBody" style="color: #000;">
-                <svg width="1400" height="420" viewBox="0 0 1400 420" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                    <rect width="1400" height="420" fill="#E9ECF5"/>
-                </svg>
+            <div class="featuresBlockBody" style="color: #000;min-height: 240px;background: #E9ECF5;padding: 16px 20px;font-size: 19px;line-height: 48px;word-break: break-word;">
+                <?php echo wp_kses_post(get_the_content()); ?>
             </div>
         </div>
     </div>
