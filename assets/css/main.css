@@ -1857,7 +1857,11 @@ select[class="filterSelect"] {
 
 .featuresBlockBodyFiImg img {
     width: 100%;
-    min-height: 480px;
+    /*min-height: 480px;*/
+    min-height: 420px;
+    max-height: 420px;
+    object-fit: cover;
+    object-position: top;
     /*min-width: 54vw;*/
 }
 
