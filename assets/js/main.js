@@ -267,7 +267,7 @@ const appInit = () => {
                                     'Content-Type': 'application/json',
                                     // 'X-WP-Nonce': wc_product_data.nonce // Если потребуется безопасность
                                 },
-                                body: JSON.stringify({cartItems: this.cartItems, form: this.form})
+                                body: JSON.stringify({cartItems: this.cartItems.filter(item => item.selected), form: this.form})
                             })
                                 .then(async (res) => {
                                     const data = await res.json();
