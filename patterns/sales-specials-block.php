@@ -25,29 +25,54 @@ $query = new WP_Query(array(
     'posts_per_page' => -1,
     'orderby' => 'date',
     'order' => 'DESC',
-));?>
+)); ?>
 
-<div class="pageSpecialBodyList" style="padding: 100px 0;">
-    <?php if( $query->have_posts() ): ?>
-        <?php while( $query->have_posts() ): $query->the_post(); ?>
-    <div class="pageSpecialBodyListItem">
-        <div class="featuresBlockCol">
-            <div class="featuresBlockHeadingWrap" style="display: flex; justify-content: space-between">
-                <div class="featuresBlockHeading" style="width: 100%">
-                    <div class="featuresBlockHeadingTitle" style="display: flex; width: 100%;">
-                        <span class="headingTitle __HighActive"><?php echo str_pad($i++, 2, '0', STR_PAD_LEFT); ?></span>
-                        <span style="flex: auto; text-align: center; width: 100%"><?php echo esc_html(get_the_title()); ?></span>
+<!--<div class="pageSpecialBodyList" style="padding: 100px 0;">-->
+
+<section class="featuresBlock">
+    <div class="featuresBlockWrapper gridWrap">
+
+        <?php if ($query->have_posts()): ?>
+            <?php while ($query->have_posts()): $query->the_post(); ?>
+                <article class="featuresBlockCol">
+                    <header class="featuresBlockHeadingWrap">
+                        <div class="featuresBlockHeading">
+                            <h2 class="featuresBlockHeadingTitle">
+                                <span class="headingTitle __HighActive"><?php echo str_pad($i++, 2, '0', STR_PAD_LEFT); ?></span>
+                                <!--                    --><?php //echo esc_html(get_the_title()); ?>
+                            </h2>
+                        </div>
+                        <div class="featuresBlockBodyHeading __Table __Main __Mob">
+                            <h3 class="featuresBlockBodyHeadingTitle">
+                                <?php echo esc_html(get_the_title()); ?>
+                            </h3>
+                            <span class="featuresBlockBodyHeadingDesc"><?php echo wp_kses_post(get_the_content()); ?></span>
+                        </div>
+                    </header>
+                    <div class="featuresBlockBody">
+                        <div class="featuresBlockBodyWrapper __End">
+                            <div class="featuresBlockBodyLt">
+                                <div class="featuresBlockMbImg">
+                                    <img class="featuresBlockBodyFiImg"
+                                         src="<?php echo esc_url(get_theme_file_uri('assets/images/prdctImage2Bg.png')); ?>"
+                                         alt="Решетчатый настил PressedSteel" loading="lazy">
+                                </div>
+                                <div class="featuresBlockMoreBtn">
+                                </div>
+                            </div>
+                            <div class="featuresBlockBodyRt">
+                                <div class="featuresBlockBodyFi">
+                                    <img class="featuresBlockBodyFiImg"
+                                         src="<?php echo esc_url(get_theme_file_uri('assets/images/prdctImage2Bg.png')); ?>"
+                                         alt="Решетчатый настил PressedSteel" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="featuresBlockBody" style="color: #000;min-height: 240px;background: #E9ECF5;padding: 16px 20px;font-size: 19px;line-height: 48px;word-break: break-word;">
-                <?php echo wp_kses_post(get_the_content()); ?>
-            </div>
-        </div>
+                </article>
+            <?php endwhile;
+            wp_reset_postdata(); ?>
+        <?php else: ?><p><?php _e('No specials found.', 'textdomain'); ?></p><?php endif; ?>
     </div>
-        <?php endwhile; wp_reset_postdata(); ?>
-    <?php else: ?>
-        <p><?php _e('No specials found.', 'textdomain'); ?></p>
-    <?php endif; ?>
-</div>
+</section>
+<!--</div>-->
