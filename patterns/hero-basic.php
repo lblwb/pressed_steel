@@ -26,8 +26,8 @@
                 <!-- /wp:heading -->
             </div>
         </div>
-
-        <div class="bgrHeroBlockAction" style="margin-bottom: 10vh">
+        <!--margin-bottom: 10vh-->
+        <div class="bgrHeroBlockAction" style="margin-bottom: 8vh">
             <div class="bgrHeroBlockActionWrapper">
                 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
                 <?php
