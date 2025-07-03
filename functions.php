@@ -184,7 +184,8 @@ function pst_init_woocommerce()
 add_action('init', 'pst_init_woocommerce');
 
 function add_yandex_metrika() {
-    ?>
+    if ( ! is_admin() ) {
+        ?>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]function(){(m[i].a=m[i].a[]).push(arguments)};
