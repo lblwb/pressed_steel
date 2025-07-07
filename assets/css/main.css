@@ -856,7 +856,8 @@ select[class="filterSelect"] {
 .bgrHeroBlockBanner .bgrHeroBlockHeading {
     margin-bottom: 40px;
     margin-bottom: 40px;
-    margin-top: 120px;
+    /*margin-top: 120px;*/
+    margin-top: max(12vh, 120px);
 }
 
 .bgrHeroBlockBanner .blockHeadingCatImage {
@@ -920,7 +921,8 @@ select[class="filterSelect"] {
 
 .bgrHeroBlock .bgrHeroBlockWrapper {
     /*min-height: 80vh;*/
-    min-height: 70vh;
+    /*min-height: 70vh;*/
+    min-height: max(70vh, 680px);
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -930,7 +932,8 @@ select[class="filterSelect"] {
 /*style="margin-bottom: 40px;margin-top: 12vh;"*/
 .bgrHeroBlockHeading {
     margin-bottom: 100px;
-    margin-top: 12vh;
+    /*margin-top: 12vh;*/
+    margin-top: max(12vh, 120px);
 }
 
 .bgrHeroBlockActionWrapper {
@@ -1007,8 +1010,10 @@ select[class="filterSelect"] {
 .featuresBlockWrapper {
     /*padding: 10vh 0;*/
     /*padding: 10vh 0 0 0;*/
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+    /*padding-top: 10vh;*/
+    /*padding-bottom: 10vh;*/
+    padding-top: 6vh;
+    padding-bottom: 1vh;
 }
 
 .featuresBlockHeadingWrap {
@@ -2016,18 +2021,21 @@ select[class="filterSelect"] {
     }
 }
 
-
-@media screen and (max-width: 1540px) and (max-width: 1720px) {
+@media screen and (min-width: 2000px) {
     .callToActionPreview {
-        max-width: 780px !important;
+        max-width: 44vw!important;
     }
 }
 
-
-@media screen and (max-width: 1820px) {
-
+@media screen and (max-width: 1660px)  and (max-width: 1820px) {
     .callToActionPreview {
-        max-width: 900px !important;
+        max-width: 800px !important;
+    }
+}
+
+@media screen and (max-width: 1540px) and (max-width: 1780px) {
+    .callToActionPreview {
+        max-width: 780px !important;
     }
 }
 
@@ -2074,7 +2082,7 @@ select[class="filterSelect"] {
     }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1140px) {
     .callToActionHeading {
         max-width: 560px !important;
     }
@@ -2131,7 +2139,7 @@ select[class="filterSelect"] {
     }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 860px) {
     .callToActionHeading {
         max-width: 340px !important;
     }
