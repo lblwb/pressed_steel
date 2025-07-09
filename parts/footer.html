@@ -1,3 +1,14 @@
+<div id="certModalApp" v-cloak style="display: none" >
+    <div class="modal-overlay" @click.self="toggleModal(null)" @keydown.esc="toogleModal(null)">
+        <div class="modal-content modal-image-content">
+            <button class="modal-close" @click="toggleModal(null)">✕</button>
+            <div class="modal-image-wrapper" style="text-align:center;">
+                <img :src="imageSrc" alt="Сертификат" style="max-width: 90vw; max-height: 80vh; object-fit: contain;" />
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer class="site-footer">
     <div class="footer-container gridWrap">
 

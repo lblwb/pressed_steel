@@ -153,6 +153,21 @@ function render_custom_mob_navbar()
     return ob_get_clean();
 }
 
+// functions.php или custom plugin
+add_shortcode('section_cert_block', 'render_section_cert_block');
+function render_section_cert_block()
+{
+    ob_start();
+    include get_template_directory() ."/template-parts/certificates/section-cert-block.php";
+    return ob_get_clean();
+}
+
+//add_shortcode("more_btn_block", "render_more_btn");
+//function render_more_btn()
+//{
+//    echo '';
+//}
+
 
 // Initialize WooCommerce objects
 function pst_init_woocommerce()

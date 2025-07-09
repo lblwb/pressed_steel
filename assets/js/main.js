@@ -1,4 +1,4 @@
-const showNotify = ({ icon = 'ℹ️', title = '', message = '', type = 'info', duration = 5000 }) => {
+const showNotify = ({icon = 'ℹ️', title = '', message = '', type = 'info', duration = 5000}) => {
     jQuery.notify.addStyle('customStyle', {
         html: `
     <div class="notifyjs-customStyle-base" style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; min-width: 300px; max-width: 400px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); background: #fff; color: #000;">
@@ -267,12 +267,16 @@ const appInit = () => {
                                     'Content-Type': 'application/json',
                                     // 'X-WP-Nonce': wc_product_data.nonce // Если потребуется безопасность
                                 },
-                                body: JSON.stringify({cartItems: this.cartItems.filter(item => item.selected), form: this.form})
+                                body: JSON.stringify({
+                                    cartItems: this.cartItems.filter(item => item.selected),
+                                    form: this.form
+                                })
                             })
                                 .then(async (res) => {
                                     const data = await res.json();
 
-                                    if (res.ok && data.success) {;
+                                    if (res.ok && data.success) {
+                                        ;
                                         showNotify({
                                             icon: '✅',
                                             title: 'Заказ успешно создан!',
@@ -458,7 +462,7 @@ const appInit = () => {
                             } else {
                                 console.error('Add to cart failed:', data.message || 'Unknown error');
                                 showNotify({
-                                    icon:'⚠️',
+                                    icon: '⚠️',
                                     title: 'Не удалось добавить',
                                     message: 'Не удалось добавить товар в корзину!'
                                 })
@@ -466,7 +470,7 @@ const appInit = () => {
                         } catch (error) {
                             console.error('Fetch error:', error);
                             showNotify({
-                                icon:'⚠️',
+                                icon: '⚠️',
                                 title: 'Не успешно',
                                 message: 'Не удалось добавить товар!'
                             })
@@ -681,6 +685,31 @@ const appInit = () => {
         }
 
     }
+    const appCertModal = () => {
+        const appCertModal = Vue.createApp({
+            setup() {
+                const isVisible = Vue.ref(false);
+                const imageSrc = Vue.ref(null);
+
+                function toggleModal(url) {
+                    if (url) {
+                        imageSrc.value = url;
+                        isVisible.value = true;
+                        document.body.style.overflow = 'hidden'; // чтобы страница не скроллилась
+                        document.getElementById('certModalApp').style.display = 'block';
+                    } else {
+                        isVisible.value = false;
+                        imageSrc.value = null;
+                        document.body.style.overflow = ''; // вернуть прокрутку
+                        document.getElementById('certModalApp').style.display = 'none';
+                    }
+                }
+
+                return {isVisible, imageSrc, toggleModal};
+            }
+        }).mount('#certModalApp');
+        window.cerftModal = appCertModal;
+    }
 
     const appContacts = () => {
         try {
@@ -755,6 +784,7 @@ const appInit = () => {
     appCart();
     appProductCard();
     appCallToAction();
+    appCertModal();
     appContacts();
 }
 

@@ -97,9 +97,12 @@
                 <div class="featuresBlockBodyWrapper __End">
                     <div class="featuresBlockBodyLt">
                         <div class="featuresBlockBodyFiMob">
-                            <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificates-mb.svg')); ?>"
+<!--                            <img src="--><?php //echo esc_url(get_theme_file_uri('assets/images/certificates-mb.svg')); ?><!--"-->
+<!--                                 alt="Сертификаты качества PressedSteel" loading="lazy"-->
+<!--                                 style="width: 100%; height: 100%;">-->
+                            <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificate-tb.png')); ?>"
                                  alt="Сертификаты качества PressedSteel" loading="lazy"
-                                 style="width: 100%; height: 100%;">
+                                 style="width: 100%; height: 100%; max-width: 260px"  onclick="window.cerftModal.toggleModal('<?php echo esc_url(get_theme_file_uri('assets/images/cert-full.jpg')); ?>')">
                         </div>
                         <div class="featuresBlockMoreBtn">
                             <a class="blockActionBtn __Active" href="/certificates" class="button is-style-fill"
@@ -129,15 +132,21 @@
                     </div>
                     <div class="featuresBlockBodyRt">
                         <div class="featuresBlockBodyFi __Main">
-                            <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificates.svg')); ?>"
+<!--                            <img src="--><?php //echo esc_url(get_theme_file_uri('assets/images/certificates.svg')); ?><!--"-->
+<!--                                 alt="Сертификаты качества PressedSteel" loading="lazy"-->
+<!--                                 style="width: 100%; height: 100%;">-->
+                            <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificate.png')); ?>"
                                  alt="Сертификаты качества PressedSteel" loading="lazy"
-                                 style="width: 100%; height: 100%;">
+                                 style="width: 100%; height: 100%; max-width: 335px;" onclick="window.cerftModal.toggleModal('<?php echo esc_url(get_theme_file_uri('assets/images/cert-full.jpg')); ?>')">
                         </div>
 
                         <div class="featuresBlockBodyFi __Table">
-                            <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificates-tb.svg')); ?>"
+<!--                            <img src="--><?php //echo esc_url(get_theme_file_uri('assets/images/certificates-tb.svg')); ?><!--"-->
+<!--                                 alt="Сертификаты качества PressedSteel" loading="lazy"-->
+<!--                                 style="width: 100%; height: 100%;">-->
+                            <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificate-tb.png')); ?>"
                                  alt="Сертификаты качества PressedSteel" loading="lazy"
-                                 style="width: 100%; height: 100%;">
+                                 style="width: 100%; height: 100%; max-width: 260px" onclick="window.cerftModal.toggleModal('<?php echo esc_url(get_theme_file_uri('assets/images/cert-full.jpg')); ?>')">
                         </div>
                     </div>
                 </div>
