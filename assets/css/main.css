@@ -593,6 +593,13 @@ body.page-template-default .pageBody p{
     margin-bottom: 24px;
 }
 
+@media screen and (max-width: 1200px) {
+    .mainNavbarBase {
+        display: none;
+    }
+
+}
+
 @media screen and (max-width: 1024px) {
     .mainNavbarWrapper {
         padding: 0 0px !important;
@@ -614,9 +621,6 @@ body.page-template-default .pageBody p{
     .mainNavbarMobFull {
     }
 
-    .mainNavbarBase {
-        display: none;
-    }
 
     .mainNavbarMob {
         display: flex;
@@ -1026,8 +1030,12 @@ select[class="filterSelect"] {
     min-width: 450px;
 }
 
-.featuresBlockWrapper .featuresBlockCol {
-    margin-bottom: 100px;
+/*.featuresBlockWrapper .featuresBlockCol {*/
+/*    margin-bottom: 100px;*/
+/*}*/
+
+.featuresBlockWrapper .featuresBlockCol{
+    margin-bottom: 30px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -1402,9 +1410,14 @@ select[class="filterSelect"] {
     }
 }
 
+/*.featuresBlockBodySlider {*/
+/*    min-height: 580px;*/
+/*    max-height: 580px;*/
+/*}*/
+
 .featuresBlockBodySlider {
-    min-height: 580px;
-    max-height: 580px;
+    min-height: 540px;
+    max-height: 540px;
 }
 
 .featuresBlockBodySliderWrapper {
@@ -1650,10 +1663,12 @@ select[class="filterSelect"] {
     }
 }
 
+/*.__Slider .featuresBlockBodyLt {*/
+/*    min-height: 590px;*/
+/*}*/
+
 .__Slider .featuresBlockBodyLt {
-    min-height: 590px;
-
-
+    min-height: 540px;
 }
 
 @media screen and (max-width: 1024px) {
