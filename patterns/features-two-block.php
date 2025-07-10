@@ -75,7 +75,8 @@
     </div>
 </section>
 
-<section class="featuresBlock" style="background: rgb(250 252 255)">
+<!--background: rgb(250 252 255)-->
+<section class="featuresBlock" style="background: rgb(239 246 255)">
     <div class="featuresBlockWrapper gridWrap" >
         <!-- Certificates Section -->
         <article class="featuresBlockCol" id="certification">

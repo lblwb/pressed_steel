@@ -1,4 +1,4 @@
-<!-- Второй блок: Акции -->
+<!-- Акции -->
 <article class="featuresBlockCol" itemscope itemtype="https://schema.org/Offer">
     <header class="featuresBlockHeadingWrap">
         <div class="featuresBlockHeading" style="">

@@ -1,4 +1,4 @@
-<!-- Первый блок: Продукция -->
+<!-- Продукция -->
 <article class="featuresBlockCol __Slider" itemscope itemtype="https://schema.org/Product">
     <header class="featuresBlockHeadingWrap">
         <!--        style="margin-bottom: 4rem; min-width: 28.8vw;"-->
@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <!-- Правая колонка: слайдер -->
+            <!-- слайдер -->
             <div class="featuresBlockBodyRt">
                 <div class="featuresBlockBodySlider" aria-label="Галерея продукции">
                     <div class="featuresBlockBodySliderWrapper swiper-wrapper">

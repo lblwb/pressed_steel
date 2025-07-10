@@ -12,7 +12,8 @@
     </div>
 </section>
 
-<section class="featuresBlock" aria-label="Cпецпредложений" style="background: rgb(250 252 255)">
+<!--<section class="featuresBlock" aria-label="Cпецпредложений" style="background: rgb(250 252 255)">-->
+<section class="featuresBlock" aria-label="Cпецпредложений" style="background: rgb(239 246 255)">
     <div class="featuresBlockWrapper gridWrap">
         <?php get_template_part('template-parts/features/section', 'promo'); ?>
     </div>
