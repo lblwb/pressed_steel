@@ -1647,7 +1647,8 @@ select[class="filterSelect"] {
     background-color: #e0e0e050;
     transform: translateX(-50%);
     z-index: 1;
-    left: calc(453px + 1rem);
+    /*left: calc(453px + 1rem);*/
+    left: calc(445px + 1rem);
 }
 
 @media screen and (max-width: 1024px) {
