@@ -30,7 +30,7 @@
         <div class="featuresBlockBodyWrapper __End">
             <div class="featuresBlockBodyLt">
                 <div class="featuresBlockBodyFiMob">
-                    <div class="featuresBlockBodyFiWrapper"  style="display:flex; overflow-x: auto;">
+                    <div class="featuresBlockBodyFiWrapper"   style="display:flex; overflow-x: auto; justify-content: space-between">
                     <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificate-tb.png')); ?>"
                          alt="Сертификаты качества PressedSteel" loading="lazy"
                          style="width: 100%; height: 100%; max-width: 225px"
@@ -62,7 +62,7 @@
             </div>
             <div class="featuresBlockBodyRt">
                 <div class="featuresBlockBodyFi __Main">
-                    <div class="featuresBlockBodyFiWrapper"  style="display:flex; overflow-x: auto;">
+                    <div class="featuresBlockBodyFiWrapper"   style="display:flex; overflow-x: auto; justify-content: space-between">
                     <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificate.png')); ?>"
                          alt="Сертификаты качества PressedSteel" loading="lazy"
                          style="width: 100%; height: 100%; max-width: 280px;"
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="featuresBlockBodyFi __Table">
-                    <div class="featuresBlockBodyFiWrapper"  style="display:flex; overflow-x: auto;">
+                    <div class="featuresBlockBodyFiWrapper"   style="display:flex; overflow-x: auto; justify-content: space-between">
                         <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificate-tb.png')); ?>"
                              alt="Сертификаты качества PressedSteel" loading="lazy"
                              style="width: 100%; height: 100%; max-width: 220px"
