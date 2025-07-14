@@ -1035,7 +1035,7 @@ select[class="filterSelect"] {
 /*}*/
 
 .featuresBlockWrapper .featuresBlockCol{
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
 }
 
 @media screen and (max-width: 1024px) {
@@ -1048,12 +1048,17 @@ select[class="filterSelect"] {
 
 @media screen and (max-width: 768px) {
     .featuresBlockWrapper {
-        margin-top: 60px !important;
+        /*margin-top: 60px !important;*/
         padding: 0 !important;
     }
 
     .featuresBlockWrapper .featuresBlockCol {
-        margin-bottom: 60px !important;
+        /*margin-bottom: 60px !important;*/
+    }
+
+    .featuresBlockWrapper .featuresBlockCol.__Slider{
+        /*padding-bottom: 24px;*/
+        padding: 24px 0;
     }
 
     .featuresBlockCol .featuresBlockHeading {
@@ -1166,6 +1171,7 @@ select[class="filterSelect"] {
 
 .featuresBlock {
     position: relative;
+    padding: 1px 0;
 }
 
 /*@media screen and (max-width: 1440px) {*/
