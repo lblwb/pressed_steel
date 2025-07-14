@@ -3759,11 +3759,13 @@ a {
 
 .modal-content {
     background: white;
-    max-width: 800px;
+    max-width: 75vh;
     width: 100%;
     padding: 40px;
     position: relative;
     font-family: sans-serif;
+    max-height: 96vh;
+    overflow: hidden;
 }
 
 .modal-close {
