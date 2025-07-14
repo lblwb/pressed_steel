@@ -2818,7 +2818,7 @@ select[class="filterSelect"] {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    gap: 20px 66px;
+    gap: 20px 36px;
     /* display: flex;justify-content: space-between; gap: 10px*/
 }
 
@@ -2834,7 +2834,10 @@ select[class="filterSelect"] {
 
 .productParamsItem {
     /*margin-bottom: 30px;*/
-    max-width: 385px;
+    /*max-width: 385px;*/
+    max-width: 360px;
+    flex: auto;
+    width: 100%;
 }
 
 .productParamsItemHeading {
