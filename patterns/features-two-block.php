@@ -152,14 +152,14 @@
                                      alt="Сертификаты качества PressedSteel" loading="lazy"
                                      style="width: 100%; height: 100%; max-width: 280px;"
                                      onclick="window.cerftModal.toggleModal('<?php echo esc_url(get_theme_file_uri('assets/images/cert-full.jpg')); ?>')">
-                                <img src="<?php echo esc_url(get_theme_file_uri('assets/images/cert-2.jpg')); ?>"
+                                <img src="<?php echo esc_url(get_theme_file_uri('assets/images/cert2.jpg')); ?>"
                                      alt="Сертификаты качества PressedSteel" loading="lazy"
                                      style="width: 100%; height: 100%; max-width: 280px;"
-                                     onclick="window.cerftModal.toggleModal('<?php echo esc_url(get_theme_file_uri('assets/images/cert-2.jpg')); ?>')">
-                                <img src="<?php echo esc_url(get_theme_file_uri('assets/images/cert-3.jpg')); ?>"
+                                     onclick="window.cerftModal.toggleModal('<?php echo esc_url(get_theme_file_uri('assets/images/cert2.jpg')); ?>')">
+                                <img src="<?php echo esc_url(get_theme_file_uri('assets/images/cert3.jpg')); ?>"
                                      alt="Сертификаты качества PressedSteel" loading="lazy"
                                      style="width: 100%; height: 100%; max-width: 280px;"
-                                     onclick="window.cerftModal.toggleModal('<?php echo esc_url(get_theme_file_uri('assets/images/cert-3.jpg')); ?>')">
+                                     onclick="window.cerftModal.toggleModal('<?php echo esc_url(get_theme_file_uri('assets/images/cert3.jpg')); ?>')">
                             </div>
                         </div>
 
