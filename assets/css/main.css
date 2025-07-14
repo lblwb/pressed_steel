@@ -4068,3 +4068,15 @@ a {
         max-width: 96vw;
     }
 }
+
+/*pageSpecialBody*/
+
+.pageSpecialBody .featuresBlockBodyFiImg{
+    
+}
+
+@media screen and (max-width: 560px) {
+    .pageSpecialBody .featuresBlockBodyFiImg{
+        display: block;
+    }
+}
