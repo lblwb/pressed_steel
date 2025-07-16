@@ -33,7 +33,7 @@
                                 <div class="desc" v-html="item.desc" style="margin-bottom: 20px"></div>
                                 <div class="cardInfoParams" style="display: flex; gap: 10px">
                                     <div class="cardInfoParamsRow" v-if="item.attributes">
-                                        <div class="cardInfoParamsItem" v-for="(value,key, item) in item.attributes">{{key}}:{{value}}</div>
+                                        <div class="cardInfoParamsItem" v-for="(value,key, item) in item.attributes">{{key}}: {{value}}</div>
                                     </div>
 <!--                                    <div class="cardInfoParamsRow">-->
 <!--                                        <div class="cardInfoParamsItem">Ширина: 1000</div>-->
@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                         <div class="infoMobPrice">
-                                            <div class="infoMobPriceBlock" style="background: #fff; padding: 12px 28px; min-width: 140px;">
+                                            <div class="infoMobPriceBlock">
 <!--                                                {{ formatPrice(item.total) }}-->
                                                 По запросу
                                             </div>

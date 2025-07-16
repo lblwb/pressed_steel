@@ -78,7 +78,7 @@ if (have_rows('application_areas')) {
                             </div>
                             <div class="cartAddBoxPrice">
 <!--                                --><?php //echo $product->get_price_html() ?>
-                                Сумма: По запросу
+                                Стоимость: По запросу
                             </div>
                             <div class="cartAddBoxQty">
                                 <div class="cartAddBoxQtyWrapper">

@@ -1936,6 +1936,12 @@ select[class="filterSelect"] {
     display: none;
 }
 
+@media screen and (max-width: 1360px) {
+    .featuresBlockBodyFiImg img {
+        max-width: 590px!important;
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .featuresBlockBodyFi.__Main {
         display: none;
@@ -2998,7 +3004,7 @@ select[class="filterSelect"] {
 }
 
 .tech-specs-list li::marker {
-    content: "•";
+    /*content: "•";*/
     margin-left: 6px;
 }
 
@@ -3323,7 +3329,7 @@ select[class="filterSelect"] {
 .cartOrderBlockInfo .cardInfoParams .cardInfoParamsRow{
     display: flex;
     flex-flow: column;
-    gap: 4px;
+    gap: 8px;
 }
 
 .cartOrderBlockInfoMob{
@@ -3353,9 +3359,15 @@ select[class="filterSelect"] {
 .cartOrderBlockInfoMobWrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 80px;
     height: 100%;
+}
+
+.infoMobPriceBlock{
+    background: rgb(255, 255, 255);
+    padding: 12px 20px;
+    min-width: 140px;
 }
 
 @media screen and (max-width: 560px){
@@ -3987,7 +3999,7 @@ a {
 .productInfoHeadingCart .cartAddBox .cartAddBoxPrice {
     width: 100%;
     background: #f2f5fc;
-    padding: 20px 18px;
+    padding: 20px 14px;
     text-align: center;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;

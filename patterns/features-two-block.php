@@ -101,7 +101,7 @@
 <!--                            <img src="--><?php //echo esc_url(get_theme_file_uri('assets/images/certificates-mb.svg')); ?><!--"-->
 <!--                                 alt="Сертификаты качества PressedSteel" loading="lazy"-->
 <!--                                 style="width: 100%; height: 100%;">-->
-                            <div class="featuresBlockBodyFiWrapper"   style="display:flex; overflow-x: auto; justify-content: space-between">
+                            <div class="featuresBlockBodyFiWrapper"   style="display:flex;overflow-x: auto;justify-content: space-between;overflow-y: hidden;">
                                 <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificate-tb.png')); ?>"
                                      alt="Сертификаты качества PressedSteel" loading="lazy"
                                      style="width: 100%; height: 100%; max-width: 225px"
@@ -147,7 +147,7 @@
 <!--                            <img src="--><?php //echo esc_url(get_theme_file_uri('assets/images/certificates.svg')); ?><!--"-->
 <!--                                 alt="Сертификаты качества PressedSteel" loading="lazy"-->
 <!--                                 style="width: 100%; height: 100%;">-->
-                            <div class="featuresBlockBodyFiWrapper"  style="display:flex; overflow-x: auto; justify-content: space-between">
+                            <div class="featuresBlockBodyFiWrapper"  style="display:flex;overflow-x: auto;justify-content: space-between;overflow-y: hidden;">
                                 <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificate.png')); ?>"
                                      alt="Сертификаты качества PressedSteel" loading="lazy"
                                      style="width: 100%; height: 100%; max-width: 280px;"
@@ -167,7 +167,7 @@
 <!--                            <img src="--><?php //echo esc_url(get_theme_file_uri('assets/images/certificates-tb.svg')); ?><!--"-->
 <!--                                 alt="Сертификаты качества PressedSteel" loading="lazy"-->
 <!--                                 style="width: 100%; height: 100%;">-->
-                            <div class="featuresBlockBodyFiWrapper"  style="display:flex; overflow-x: auto; justify-content: space-between">
+                            <div class="featuresBlockBodyFiWrapper"  style="display:flex;overflow-x: auto;justify-content: space-between;overflow-y: hidden;">
                                 <img src="<?php echo esc_url(get_theme_file_uri('assets/images/certificate-tb.png')); ?>"
                                      alt="Сертификаты качества PressedSteel" loading="lazy"
                                      style="width: 100%; height: 100%; max-width: 220px"
