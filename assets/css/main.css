@@ -3865,6 +3865,37 @@ a {
     overflow-x: hidden;
 }
 
+.modal-image-wrapper{
+    text-align: center;
+    max-width: 42vw;
+    margin: 0px auto;
+    max-height: 100vh;
+    overflow: auto;
+    border: solid 1px #f5f5f5;
+}
+
+@media screen and (max-width: 1680px){
+    .modal-content {
+        background: white;
+        max-width: 68vh;
+    }
+    .modal-image-wrapper{
+        max-width: 38vw;
+    }
+}
+
+@media screen and (max-width: 1440px){
+    .modal-image-wrapper{
+        max-width: 38vw;
+    }
+}
+
+@media screen and (max-width: 1140px){
+    .modal-image-wrapper{
+        max-width: 54vw;
+    }
+}
+
 .modal-close {
     position: absolute;
     top: 16px;
