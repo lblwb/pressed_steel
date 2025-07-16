@@ -230,7 +230,7 @@ const appInit = () => {
                                 showNotify({
                                     icon: '✅',
                                     title: `Товар удален из корзины`,
-                                    message: `Вы удалил  — <strong>${item.name}</strong> из коризны.`
+                                    message: `Вы удалили  — <strong>${item.name}</strong> из коризны.`
                                 });
                                 await this.fetchCart()
                             });

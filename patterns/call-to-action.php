@@ -63,7 +63,7 @@
 
         <div class="callToPopupMb">
             <template v-if="appCallToActionState.poupup.show">
-                <div class="modal-overlay" @click.self="togglePoupup">
+                <div class="modal-overlay" @click.self="togglePoupup" @keydown.esc="togg    lePoupup" @keydown.enter="submitForm">
                     <div class="modal-content">
                         <button class="modal-close" @click="togglePoupup">✕</button>
                         <div class="modal-title">
@@ -152,7 +152,7 @@
                             </div>
 
                             <p class="modal-disclaimer">
-                                Нажимая “Отправить”, вы соглашаетесь с <a href="/privacy-policy/">политикой обработки персональных данных</a> и <a href="/privacy-policy/">политикой сайта</a>
+                                Нажимая “Отправить”, Вы соглашаетесь с <a href="/privacy-policy/">политикой обработки персональных данных</a> и <a href="/privacy-policy/">политикой сайта</a>
                             </p>
                         </form>
 
@@ -242,7 +242,7 @@
                             </div>
 
                             <p class="modal-disclaimer">
-                                Нажимая “Отправить”, вы соглашаетесь с <a href="/privacy-policy/">политикой обработки персональных данных</a> и <a href="/privacy-policy/">политикой сайта</a>
+                                Нажимая “Отправить”, Вы соглашаетесь с <a href="/privacy-policy/">политикой обработки персональных данных</a> и <a href="/privacy-policy/">политикой сайта</a>
                             </p>
                         </form>
 

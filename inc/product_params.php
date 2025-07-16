@@ -240,7 +240,7 @@ function pst_get_cart_data(WP_REST_Request $request) {
                 'key' => $key,
                 'name' => $product->get_name(),
                 'desc' => $product->get_short_description(),
-                'image' => get_the_post_thumbnail_url($product->get_id(), 'thumbnail') ?: '',
+                'image' => get_the_post_thumbnail_url($product->get_id(), 'original') ?: '',
                 'quantity' => $item['quantity'],
                 'price' => (float) $product->get_price(),
                 'product_id' => base64_encode($product->get_id()),

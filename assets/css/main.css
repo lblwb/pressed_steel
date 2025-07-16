@@ -1538,6 +1538,20 @@ select[class="filterSelect"] {
     display: flex;
 }
 
+.pageCertBodyContent figure > img,
+.featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"]{
+    cursor: zoom-in;
+    border: solid 2px transparent;
+}
+
+.featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"]:hover,
+.featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"]:focus
+.pageCertBodyContent figure > img:focus,
+.pageCertBodyContent figure > img:hover{
+    border: solid 2px #f2edff;
+    transform: scale(1.01);
+}
+
 .featuresBlockBodyFiMob {
     display: none;
 }
@@ -3262,7 +3276,9 @@ select[class="filterSelect"] {
 
 .cartOrderBlockItem {
     background: #E9ECF5;
-    gap: 40px
+    gap: 40px;
+    align-items: flex-start;
+    padding: 8px 20px;
 }
 
 .cartOrderBlockItemSelected {
@@ -3274,11 +3290,43 @@ select[class="filterSelect"] {
 }
 
 .cartOrderBlockItemImg {
-    flex: 0
+    width: 144px;
+    height: 128px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #fff;
+    padding: 0 7px;
+}
+
+.cartOrderBlockItemImg img {
+    /* let the image scale to fit, preserving its aspect ratio */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* remove any forced width/height to avoid distortion */
+    width: auto;
+    height: auto;
 }
 
 .cartOrderBlockInfo {
     flex: 1
+}
+
+.cartOrderBlockInfo .cardInfoParams{
+    display: flex; gap: 10px;
+}
+
+.cartOrderBlockInfo .cardInfoParams .cardInfoParamsRow{
+    display: flex;
+    flex-flow: column;
+    gap: 4px;
+}
+
+.cartOrderBlockInfoMob{
+    height: 100%;
 }
 
 .cartOrderBlockInfoMobPrice {
@@ -3290,7 +3338,11 @@ select[class="filterSelect"] {
 .cartOrderBlockInfoMobPrice .infoMobQtyHeading,
 .cartOrderBlockInfoMobQty .infoMobQtyHeading {
     margin-bottom: 60px;
+}
 
+.cartOrderBlockDel{
+    position: relative;
+    transform: translateY(50px);
 }
 
 .cartOrderBlockDelMb {
@@ -3302,9 +3354,23 @@ select[class="filterSelect"] {
     justify-content: space-between;
     align-items: center;
     gap: 80px;
+    height: 100%;
+}
+
+@media screen and (max-width: 560px){
+    .cartOrderBlockInfoMobWrapper {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 18px;
+    }
 }
 
 @media screen and (max-width: 960px) {
+    .cartOrderBlockDel{
+        transform: translateY(0);
+    }
     .cartOrderBlockDelMb {
         display: block;
     }
@@ -3357,12 +3423,20 @@ select[class="filterSelect"] {
 
     .cartOrderBlockItemImg {
         max-width: calc((100% / 2) - 16px);
-        flex: 1
+        flex: 1;
+        width: unset;
+        height: unset;
+        display: unset;
+        padding: unset;
     }
 
     .cartOrderBlockInfo {
         max-width: calc((100% / 2) - 16px);
-        flex: 1
+        flex: 1;
+    }
+
+    .cartOrderBlockInfo .cart-info{
+        display: flex;
     }
 
     .cardInfoTitle {
@@ -3774,7 +3848,8 @@ a {
     position: relative;
     font-family: sans-serif;
     max-height: 96vh;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .modal-close {
@@ -3877,6 +3952,15 @@ a {
     cursor: pointer;
 }
 
+@media screen and (max-width: 1140px) {
+    .modal-title h2 {
+        font-size: 24px!important;
+    }
+    .modal-form input{
+        font-size: 16px;
+    }
+}
+
 /* Cart */
 
 .productInfoHeadingCart {
@@ -3942,7 +4026,13 @@ a {
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
-    min-width: 35px;
+    min-width: 38px;
+    cursor: pointer;
+    border: solid 1px #0071fe;
+}
+
+.productInfoHeadingCart .cartAddBox .cartAddBoxQty .cartAddBoxQtyBtn:hover{
+    border: solid 1px #fff;
 }
 
 .productInfoHeadingCart .cartAddBox .cartAddBoxQty .cartAddBoxQtyCount {
