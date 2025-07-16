@@ -1556,7 +1556,29 @@ select[class="filterSelect"] {
     display: none;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1360px) {
+    .pageCertBodyContent figure > img, .featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"] {
+        cursor: zoom-in;
+        border: solid 2px transparent;
+        max-width: 248px !important;
+    }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1360px) {
+    .pageCertBodyContent figure > img, .featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"] {
+        cursor: zoom-in;
+        border: solid 2px transparent;
+        max-width: max(18vw, 210px) !important;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .pageCertBodyContent figure > img, .featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"] {
+        cursor: zoom-in;
+        border: solid 2px transparent;
+        max-width: max(10vw, 194px) !important;
+    }
+
     .featuresBlock .featuresBlockBodyHeadingTitle {
         max-width: 540px;
         font-family: "Montserrat";
