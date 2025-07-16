@@ -1537,6 +1537,29 @@ select[class="filterSelect"] {
 .featuresBlockBodyFi {
     display: flex;
 }
+/* по умолчанию — включаем горизонтальный скролл */
+.featuresBlockBodyFiWrapper {
+    overflow-x: auto;
+    /* опционально прячем полосы прокрутки стилизованно */
+    scrollbar-width: thin;          /* Firefox */
+    scrollbar-color: #0a7aff transparent; /* Firefox */
+    scrollbar-width: none;     /* Firefox — скрыть полосу */
+}
+.featuresBlockBodyFiWrapper::-webkit-scrollbar {
+    height: 6px;
+}
+.featuresBlockBodyFiWrapper::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 3px;
+}
+/* если внутри нет 4-го элемента figure — скрываем скролл полностью */
+.featuresBlockBodyFiWrapper:not(:has(> figure:nth-of-type(4))) {
+    /*overflow-x: hidden!important;*/
+    background: transparent;
+    scrollbar-width: thin;          /* Firefox */
+    scrollbar-color: #0a7aff transparent; /* Firefox */
+    scrollbar-width: none;     /* Firefox — скрыть полосу */
+}
 
 .pageCertBodyContent figure > img,
 .featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"]{
