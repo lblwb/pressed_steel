@@ -63,7 +63,7 @@
 
         <div class="callToPopupMb">
             <template v-if="appCallToActionState.poupup.show">
-                <div class="modal-overlay" @click.self="togglePoupup" @keydown.esc="togg    lePoupup" @keydown.enter="submitForm">
+                <div class="modal-overlay" @click.self="togglePoupup" @keydown.esc="togglePoupup" @keydown.enter="submitForm">
                     <div class="modal-content">
                         <button class="modal-close" @click="togglePoupup">✕</button>
                         <div class="modal-title">
