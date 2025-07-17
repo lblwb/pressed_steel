@@ -3246,6 +3246,13 @@ select[class="filterSelect"] {
     color: #787878;
 }
 
+@media screen and (max-width: 1560px) {
+    .submitOrderInput input {
+        font-size: 13px;
+        padding: 14px;
+    }
+}
+
 @media screen and (max-width: 1360px) {
     .submitOrderBlock {
         padding: 14px;
