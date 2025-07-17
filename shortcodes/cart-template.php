@@ -160,7 +160,7 @@
                                             <div class="orderTotalSummary">
 <!--                                                {{ formatPrice(totalSum) }}-->
 <!--                                                {{ formatPrice(totalSum) }}-->
-                                                По запросу
+                                                по запросу
                                             </div>
                                         </div>
                                     </div>

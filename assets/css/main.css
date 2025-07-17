@@ -254,11 +254,11 @@ body {
 
 /**/
 
-body.page-template-default .pageBody .wp-block-heading{
+body.page-template-default .pageBody .wp-block-heading {
     margin-bottom: 24px;
 }
 
-body.page-template-default .pageBody p{
+body.page-template-default .pageBody p {
     line-height: 22px;
 }
 
@@ -281,7 +281,7 @@ body.page-template-default .pageBody p{
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 24px!important;
+    padding: 10px 24px !important;
     /*!* padding: 10px 0;*/
 }
 
@@ -1034,7 +1034,7 @@ select[class="filterSelect"] {
 /*    margin-bottom: 100px;*/
 /*}*/
 
-.featuresBlockWrapper .featuresBlockCol{
+.featuresBlockWrapper .featuresBlockCol {
     /*margin-bottom: 30px;*/
 }
 
@@ -1056,7 +1056,7 @@ select[class="filterSelect"] {
         /*margin-bottom: 60px !important;*/
     }
 
-    .featuresBlockWrapper .featuresBlockCol.__Slider{
+    .featuresBlockWrapper .featuresBlockCol.__Slider {
         /*padding-bottom: 24px;*/
         padding: 24px 0;
     }
@@ -1332,7 +1332,7 @@ select[class="filterSelect"] {
     align-self: stretch;
 }
 
-.featuresBlock .featuresBlockBodyHeadingDesc br{
+.featuresBlock .featuresBlockBodyHeadingDesc br {
     display: block;
 }
 
@@ -1537,32 +1537,36 @@ select[class="filterSelect"] {
 .featuresBlockBodyFi {
     display: flex;
 }
+
 /* по умолчанию — включаем горизонтальный скролл */
 .featuresBlockBodyFiWrapper {
     overflow-x: auto;
     /* опционально прячем полосы прокрутки стилизованно */
-    scrollbar-width: thin;          /* Firefox */
+    scrollbar-width: thin; /* Firefox */
     scrollbar-color: #0a7aff transparent; /* Firefox */
-    scrollbar-width: none;     /* Firefox — скрыть полосу */
+    scrollbar-width: none; /* Firefox — скрыть полосу */
 }
+
 .featuresBlockBodyFiWrapper::-webkit-scrollbar {
     height: 6px;
 }
+
 .featuresBlockBodyFiWrapper::-webkit-scrollbar-thumb {
     background: #999;
     border-radius: 3px;
 }
+
 /* если внутри нет 4-го элемента figure — скрываем скролл полностью */
 .featuresBlockBodyFiWrapper:not(:has(> figure:nth-of-type(4))) {
     /*overflow-x: hidden!important;*/
     background: transparent;
-    scrollbar-width: thin;          /* Firefox */
+    scrollbar-width: thin; /* Firefox */
     scrollbar-color: #0a7aff transparent; /* Firefox */
-    scrollbar-width: none;     /* Firefox — скрыть полосу */
+    scrollbar-width: none; /* Firefox — скрыть полосу */
 }
 
 .pageCertBodyContent figure > img,
-.featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"]{
+.featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"] {
     cursor: zoom-in;
     border: solid 2px transparent;
 }
@@ -1570,7 +1574,7 @@ select[class="filterSelect"] {
 .featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"]:hover,
 .featuresBlockBodyFiWrapper img[alt="Сертификаты качества PressedSteel"]:focus
 .pageCertBodyContent figure > img:focus,
-.pageCertBodyContent figure > img:hover{
+.pageCertBodyContent figure > img:hover {
     border: solid 2px #f2edff;
     transform: scale(1.01);
 }
@@ -1983,7 +1987,7 @@ select[class="filterSelect"] {
 
 @media screen and (max-width: 1360px) {
     .featuresBlockBodyFiImg img {
-        max-width: 590px!important;
+        max-width: 590px !important;
     }
 }
 
@@ -2110,7 +2114,7 @@ select[class="filterSelect"] {
 
 @media screen and (min-width: 2000px) {
     .callToActionPreview {
-        max-width: 44vw!important;
+        max-width: 44vw !important;
     }
 }
 
@@ -3201,6 +3205,11 @@ select[class="filterSelect"] {
     min-width: 20vw;
 }
 
+@media screen and (max-width: 1360px) {
+    .cartSidebar {
+    }
+}
+
 .submitOrderBlock {
     padding: 20px;
     background: #e9ecf5;
@@ -3224,10 +3233,10 @@ select[class="filterSelect"] {
     padding: 20px;
     background: #fff;
     border: none;
-    font-family: "Montserrat";
+    font-family: "Montserrat", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     /* identical to box height */
     width: 100%;
@@ -3237,6 +3246,32 @@ select[class="filterSelect"] {
     color: #787878;
 }
 
+@media screen and (max-width: 1360px) {
+    .submitOrderBlock {
+        padding: 14px;
+    }
+
+    .submitOrderInput input {
+        font-size: 13px;
+        padding: 14px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .submitOrderInput input {
+        padding: 18px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .submitOrderInput input {
+        padding: 18px;
+        font-size: 11px;
+        font-weight: 500;
+    }
+}
+
 .submitOrderTotal {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -3244,7 +3279,9 @@ select[class="filterSelect"] {
 
 .submitOrderTotal .orderTotalWrapper {
     display: flex;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 4px;
 }
 
 .submitOrderTotal .orderTotalTitle {
@@ -3283,6 +3320,10 @@ select[class="filterSelect"] {
     font-size: 18px;
     line-height: 24px;
     color: #ffffff;
+}
+
+.pageCartBodyGrid {
+    padding: 0;
 }
 
 .clearCartBlock {
@@ -3363,21 +3404,38 @@ select[class="filterSelect"] {
     height: auto;
 }
 
+@media screen and (max-width: 1360px) {
+    .cartOrderBlockItem {
+        gap: 12px;
+        align-items: flex-start;
+        padding: 8px 18px;
+    }
+}
+
+@media screen and (max-width: 1140px) {
+    .cartOrderBlockItem {
+        gap: 8px;
+        align-items: flex-start;
+        padding: 8px 8px;
+    }
+}
+
 .cartOrderBlockInfo {
     flex: 1
 }
 
-.cartOrderBlockInfo .cardInfoParams{
-    display: flex; gap: 10px;
+.cartOrderBlockInfo .cardInfoParams {
+    display: flex;
+    gap: 10px;
 }
 
-.cartOrderBlockInfo .cardInfoParams .cardInfoParamsRow{
+.cartOrderBlockInfo .cardInfoParams .cardInfoParamsRow {
     display: flex;
     flex-flow: column;
     gap: 8px;
 }
 
-.cartOrderBlockInfoMob{
+.cartOrderBlockInfoMob {
     height: 100%;
 }
 
@@ -3392,7 +3450,7 @@ select[class="filterSelect"] {
     margin-bottom: 60px;
 }
 
-.cartOrderBlockDel{
+.cartOrderBlockDel {
     position: relative;
     transform: translateY(50px);
 }
@@ -3409,13 +3467,19 @@ select[class="filterSelect"] {
     height: 100%;
 }
 
-.infoMobPriceBlock{
+.infoMobPriceBlock {
     background: rgb(255, 255, 255);
     padding: 12px 20px;
     min-width: 140px;
 }
 
-@media screen and (max-width: 560px){
+@media screen and (max-width: 1140px) {
+    .cartOrderBlockInfoMobWrapper {
+        gap: 18px;
+    }
+}
+
+@media screen and (max-width: 560px) {
     .cartOrderBlockInfoMobWrapper {
         display: flex;
         flex-flow: row wrap;
@@ -3426,9 +3490,10 @@ select[class="filterSelect"] {
 }
 
 @media screen and (max-width: 960px) {
-    .cartOrderBlockDel{
+    .cartOrderBlockDel {
         transform: translateY(0);
     }
+
     .cartOrderBlockDelMb {
         display: block;
     }
@@ -3469,7 +3534,7 @@ select[class="filterSelect"] {
         align-items: center;
         flex-flow: row wrap;
         padding: 10px 4px;
-        gap: 4px;
+        gap: 10px;
         justify-content: flex-start;
     }
 
@@ -3493,8 +3558,10 @@ select[class="filterSelect"] {
         flex: 1;
     }
 
-    .cartOrderBlockInfo .cart-info{
+    .cartOrderBlockInfo .cart-info {
         display: flex;
+        flex-flow: row wrap;
+        gap: 10px 0;
     }
 
     .cardInfoTitle {
@@ -3910,7 +3977,7 @@ a {
     overflow-x: hidden;
 }
 
-.modal-image-wrapper{
+.modal-image-wrapper {
     text-align: center;
     max-width: 42vw;
     margin: 0px auto;
@@ -3919,24 +3986,25 @@ a {
     border: solid 1px #f5f5f5;
 }
 
-@media screen and (max-width: 1680px){
+@media screen and (max-width: 1680px) {
     .modal-content {
         background: white;
         max-width: 68vh;
     }
-    .modal-image-wrapper{
+
+    .modal-image-wrapper {
         max-width: 38vw;
     }
 }
 
-@media screen and (max-width: 1440px){
-    .modal-image-wrapper{
+@media screen and (max-width: 1440px) {
+    .modal-image-wrapper {
         max-width: 38vw;
     }
 }
 
-@media screen and (max-width: 1140px){
-    .modal-image-wrapper{
+@media screen and (max-width: 1140px) {
+    .modal-image-wrapper {
         max-width: 54vw;
     }
 }
@@ -4043,9 +4111,10 @@ a {
 
 @media screen and (max-width: 1140px) {
     .modal-title h2 {
-        font-size: 24px!important;
+        font-size: 24px !important;
     }
-    .modal-form input{
+
+    .modal-form input {
         font-size: 16px;
     }
 }
@@ -4120,7 +4189,7 @@ a {
     border: solid 1px #0071fe;
 }
 
-.productInfoHeadingCart .cartAddBox .cartAddBoxQty .cartAddBoxQtyBtn:hover{
+.productInfoHeadingCart .cartAddBox .cartAddBoxQty .cartAddBoxQtyBtn:hover {
     border: solid 1px #fff;
 }
 
@@ -4259,12 +4328,12 @@ a {
 
 /*pageSpecialBody*/
 
-.pageSpecialBody .featuresBlockBodyFiImg{
-    
+.pageSpecialBody .featuresBlockBodyFiImg {
+
 }
 
 @media screen and (max-width: 560px) {
-    .pageSpecialBody .featuresBlockBodyFiImg{
+    .pageSpecialBody .featuresBlockBodyFiImg {
         display: block;
     }
 }
